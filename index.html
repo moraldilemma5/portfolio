@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <title>My Work - Portfolio</title>
+  <meta name="description" content="テキストテキストテキストテキストテキストテキストテキストテキスト">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="img/favicon.ico">
+  <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+  <link rel="stylesheet" href="css/output.css">
+</head>
+
+<body id="top">
+  <div class="custom-cursor"></div>
+  <header>
+    <!-- ハンバーガーメニュー -->
+     
+    <div class="menu-icon" id="menuToggle">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="menu-overlay" id="menuOverlay">
+      <button class="nav-btn" onclick="navigateTo('top')">Top</button>
+      <button class="nav-btn" onclick="navigateTo('works')">Works</button>
+      <button class="nav-btn" onclick="navigateTo('project')">Project</button>
+      <button class="nav-btn" onclick="navigateTo('about')">About</button>
+      <button class="nav-btn" onclick="navigateTo('contact')">Contact</button>
+    </div>
+  </header>
+  <div id="mainvisual">
+    <video id="bg-video" autoplay muted playsinline loop>
+      <source src="img/背景2..mp4" type="video/mp4">
+    </video>
+  
+    <div id="subvisual">
+      <video id="sub-bg-video" autoplay muted playsinline loop>
+        <source src="img/シーケンス 01_2.mp4" type="video/mp4">
+      </video>
+    </div>
+  </div>
+  <div class="mainvisual-placeholder"></div>
+
+  <section id="works" class="wrapper">
+    <h2 class="sec-title sec-title-works activetext-4xl font-bold text-gray-900 mb-8 
+    opacity-0 translate-y-8 animate-fade-in-up" >Works</h2>
+    <section class="portfolio">
+      
+      <main class="mainContainer">
+        <!-- Buttons -->
+
+        
+        <div class="button-group flex flex-wrap gap-3 mb-12">
+          <button class="button active" data-filter="*">All</button>
+          <button class="button" data-filter=".photo">Photo</button>
+          <button class="button" data-filter=".video">Video & Music</button>
+          <button class="button" data-filter=".design">Design</button>
+          <button class="button" data-filter=".other">Other</button>
+        </div>
+
+        <div class="gallery-wrapper">
+        <div class="gallery">
+          <!-- Photo Grapefruit -->
+          <div class="thumbnail-group grapefruit">
+          <div class="item photo grapefruit"><img src="img/写真/グレープフルーツ/F3B1439F-CDAE-40AE-B3F3-382399A51A84.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo grapefruit"><img src="img/写真/グレープフルーツ/B84B2093-3073-4B59-8889-1F3CB9F8D5FB.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo grapefruit"><img src="img/写真/グレープフルーツ/9693DE9A-6ED2-4966-BFB4-B98B0A41A2F8 2.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo grapefruit"><img src="img/写真/グレープフルーツ/3E51A017-F844-4284-9B88-E7F9A9AB3851.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo grapefruit"><img src="img/写真/グレープフルーツ/0C8C8C00-25F3-4D2A-BE70-41F4D6DF422C.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+        </div>
+          <!-- Photo Germany1 -->
+          <div class="thumbnail-group germany1">
+          <div class="item photo germany1"><img src="img/写真/ドイツ/P1066650.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany1"><img src="img/写真/ドイツ/P1066648.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany1"><img src="img/写真/ドイツ/P1066636.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany1"><img src="img/写真/ドイツ/IMG_2254.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+        </div>
+          <!-- Photo Germany2 -->
+        <div class="thumbnail-group germany2">
+          <div class="item photo germany2"><img src="img/写真/ドイツ/連続してる木.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany2"><img src="img/写真/ドイツ/IMG_2558.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany2"><img src="img/写真/ドイツ/IMG_2556.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany2"><img src="img/写真/ドイツ/IMG_2537.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany2"><img src="img/写真/ドイツ/IMG_2521.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+        </div>
+          <!-- Photo Germany3 -->
+          <div class="thumbnail-group germany3">
+          <div class="item photo germany3"><img src="img/写真/ドイツ/IMG_1536.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany3"><img src="img/写真/ドイツ/IMG_1530.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany3"><img src="img/写真/ドイツ/IMG_1529.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany3"><img src="img/写真/ドイツ/IMG_1526.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+        </div>
+          <!-- Photo Germany4 -->
+          <div class="thumbnail-group germany4">
+          <div class="item photo germany4"><img src="img/写真/ドイツ/IMG_1140.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany4"><img src="img/写真/ドイツ/IMG_1136.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany4"><img src="img/写真/ドイツ/IMG_0459.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany4"><img src="img/写真/ドイツ/IMG_0458.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+        </div>
+          <!-- Photo Germany5 -->
+          <div class="thumbnail-group germany">
+          <div class="item photo germany5"><img src="img/写真/ドイツ/IMG_0355.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany5"><img src="img/写真/ドイツ/IMG_0344.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany5"><img src="img/写真/ドイツ/IMG_0093.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany5"><img src="img/写真/ドイツ/IMG_0086.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany5"><img src="img/写真/ドイツ/IMG_0070.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+        </div>
+          <!-- Video and Other -->
+          <div class="item video"><img src="img/写真/グレープフルーツ/9693DE9A-6ED2-4966-BFB4-B98B0A41A2F8 2.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item video"><img src="img/写真/グレープフルーツ/3E51A017-F844-4284-9B88-E7F9A9AB3851.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item video"><img src="img/写真/グレープフルーツ/0C8C8C00-25F3-4D2A-BE70-41F4D6DF422C.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item other"><img src="img/写真/ドイツ/鳩.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+        </div>
+        <div id="popup" class="popup hidden">
+          <div class="popup-overlay"></div>
+          <div class="popup-content">
+            <button class="popup-close">&times;</button>
+            <img id="popup-image" src="" alt="Popup Image">
+            <p id="popup-description"></p>
+            <div class="popup-nav">
+              <button id="prev-button">&#8592;</button>
+              <button id="next-button">&#8594;</button>
+            </div>
+          </div>
+        </div>
+      </main>
+    </section>
+  </section>
+
+  <section id="project" class="wrapper">
+    <h2 class="sec-title sec-title-project">Project</h2>
+    <dl>
+      <dt>2020.XX.XX</dt>
+      <dd>デザイン雑誌「ＸＸＸＸＸＸ Vol.11』に掲載していただきました。</dd>
+      <dt>2020.XX.XX</dt>
+      <dd>ＸＸ月ＸＸ日から写真集「ＸＸＸＸＸＸＸ」の販売を開始します。</dd>
+      <dt>2019.XX.XX</dt>
+      <dd>【イベント開催のお知らせ】テキストテキストテキストテキストテキストテキストテキスト</dd>
+      <dt>2019.XX.XX</dt>
+      <dd>デザイン雑誌「ＸＸＸＸＸＸ Vol.10』に掲載していただきました。</dd>
+      <dt>2019.XX.XX</dt>
+      <dd>【個展開催のお知らせ】テキストテキストテキストテキストテキストテキストテキスト</dd>
+    </dl>
+  </section>
+
+  <section id="about" class="wrapper">
+    <h2 class="sec-title sec-title-about">About</h2>
+    <ul>
+      <li>Xxxxx Ashley</li>
+      <li>2th Floor xxxxx Building x-x-x Nishiazabu, Minato-ku, Tokyo 106-0031 Japan</li>
+      <li>tel: 000-0000-0000</li>
+      <li>url: www.xxxxxx.jp</li>
+      <li>mail: xxx@xxxxxx.jp</li>
+    </ul>
+    <p>
+      プロフィールテキストテキストテキストテキストテキストテキストテキストテキストテキストスト
+      テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+      テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
+    </p>
+  </section>
+
+  <section id="contact" class="wrapper">
+    <h2 class="sec-title sec-title-contact">Contact</h2>
+    <form action="#" method="post">
+      <dl>
+        <dt><label for="name">NAME</label></dt>
+        <dd><input type="text" id="name" name="your-name"></dd>
+        <dt><label for="email">E-mail</label></dt>
+        <dd><input type="email" id="email" name="your-email"></dd>
+        <dt><label for="message">MESSAGE</label></dt>
+        <dd><textarea id="message" name="your-message"></textarea></dd>
+      </dl>
+      <div class="button"><input type="submit" value="送信"></div>
+    </form>
+  </section>
+
+  <footer id="footer">
+    <p>&copy; 2025 My Work</p>
+  </footer>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
+
+<script>
+
+
+//カーソル//
+const cursor = document.querySelector(".custom-cursor");
+
+let mouseX = 0;
+let mouseY = 0;
+let cursorX = 0;
+let cursorY = 0;
+const speed = 0.15; // 慣性速度
+
+document.addEventListener("mousemove", (e) => {
+  mouseX = e.clientX;
+  mouseY = e.clientY;
+});
+
+function animateCursor() {
+  cursorX += (mouseX - cursorX) * speed;
+  cursorY += (mouseY - cursorY) * speed;
+  cursor.style.transform = `translate(${cursorX}px, ${cursorY}px)`;
+  requestAnimationFrame(animateCursor);
+}
+animateCursor();
+
+// ホバー時の拡大
+document.querySelectorAll("a, button, .nav-btn").forEach((el) => {
+  el.addEventListener("mouseenter", () => cursor.classList.add("hover"));
+  el.addEventListener("mouseleave", () => cursor.classList.remove("hover"));
+});
+
+// クリック時の波紋
+document.addEventListener("mousedown", () => {
+  cursor.classList.add("click");
+  setTimeout(() => cursor.classList.remove("click"), 400);
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  // subvisualのフェード処理
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const fadeStart = 0;
+    const fadeEnd = 300;
+    const subvisual = document.getElementById('subvisual');
+
+    if (scrollY <= fadeStart) {
+      subvisual.style.opacity = 1;
+    } else if (scrollY >= fadeEnd) {
+      subvisual.style.opacity = 0;
+    } else {
+      subvisual.style.opacity = 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart);
+    }
+  });
+
+  // Worksタイトルとポートフォリオに遅延クラス追加
+  const title = document.querySelector('.sec-title-works');
+  const portfolio = document.querySelector('.portfolio');
+  setTimeout(() => title?.classList.add('active'), 100);
+  setTimeout(() => portfolio?.classList.add('active'), 600);
+
+  // IntersectionObserverによるボタン表示制御
+  const worksSection = document.getElementById('works');
+  const btnGroup = document.querySelector('.button-group');
+  if (worksSection && btnGroup && 'IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio > 0.12) {
+          btnGroup.classList.add('in-works');
+        } else {
+          btnGroup.classList.remove('in-works');
+        }
+      });
+    }, { root: null, threshold: [0, 0.12, 0.5] });
+    observer.observe(worksSection);
+  } else {
+    btnGroup?.classList.add('in-works');
+  }
+
+  // ハンバーガーメニューの開閉処理
+  const menuToggle = document.getElementById('menuToggle');
+  const menuOverlay = document.getElementById('menuOverlay');
+
+  // ハンバーガーメニュークリックで開閉
+  function navigateTo(id) {
+  const target = id === 'top' ? document.body : document.getElementById(id);
+  if (target) {
+    target.scrollIntoView({ behavior: 'smooth' });
+  }
+  menuOverlay.classList.remove('active');
+  document.body.classList.remove('menu-open');
+}
+// 外クリックで閉じる
+document.addEventListener('click', function (e) {
+  const isClickInsideMenu = menuOverlay.contains(e.target);
+  const isClickOnToggle = menuToggle.contains(e.target);
+
+  if (!isClickInsideMenu && !isClickOnToggle) {
+    menuOverlay.classList.remove('active');
+  }
+});
+
+  // メニュー内スクロール関数
+  window.navigateTo = function(sectionId) {
+    const target = document.getElementById(sectionId);
+    if (target) {
+      target.scrollIntoView({ behavior: 'smooth' });
+    }
+    menuOverlay.classList.remove("active");
+  };
+
+  // サムネイル1枚だけ表示設定
+  const shownCategories = new Set();
+  document.querySelectorAll(".item").forEach(item => {
+    const category = Array.from(item.classList).find(c =>
+      ["grapefruit", "germany1", "germany2", "germany3", "germany4", "germany5"].includes(c)
+    );
+    if (!category) return;
+    if (shownCategories.has(category)) {
+      item.setAttribute("data-thumbnail", "false");
+    } else {
+      shownCategories.add(category);
+      item.setAttribute("data-thumbnail", "true");
+    }
+  });
+
+  const groupClass = getGroupClass(item);
+if (!groupClass) return;
+currentGroup = Array.from(document.querySelectorAll(`.item.${groupClass}`));
+currentIndex = currentGroup.indexOf(item);
+
+document.addEventListener('click', function (e) {
+  const isClickInsideMenu = menuOverlay.contains(e.target);
+  const isClickOnToggle = menuToggle.contains(e.target);
+
+  if (!isClickInsideMenu && !isClickOnToggle) {
+    menuOverlay.classList.remove('active');
+  }
+});
+
+dodocument.querySelectorAll(".overlay a").forEach(link => {
+  link.addEventListener("click", e => {
+    e.preventDefault();
+    const item = e.target.closest(".item");
+    if (!item) return;
+
+    const groupClass = getGroupClass(item);
+    if (!groupClass) return;
+
+    currentGroup = Array.from(document.querySelectorAll(`.item.${groupClass}`));
+    currentIndex = currentGroup.indexOf(item);
+    showPopup();
+  });
+});
+
+    showPopup();
+  });
+
+// IntersectionObserverでサムネイルが画面に入ったらクラス追加
+document.addEventListener('DOMContentLoaded', () => {
+  const items = document.querySelectorAll('.item');
+  if ('IntersectionObserver' in window) {
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    items.forEach(item => observer.observe(item));
+  } else {
+    // 旧ブラウザはすべて表示
+    items.forEach(item => item.classList.add('in-view'));
+  }
+});
+const gallery = document.querySelector('.gallery-wrapper');
+const items = gallery.querySelectorAll('.item');
+
+items.forEach(item => {
+  const x = Math.random() * (gallery.clientWidth - item.clientWidth);
+  const y = Math.random() * 800; // 高さの範囲
+  item.style.position = 'absolute';
+  item.style.left = `${x}px`;
+  item.style.top = `${y}px`;
+});
+
+gallery.style.position = 'relative';
+gallery.style.height = '1000px'; // ランダム配置用の高さを適当に
+
+
+
+
+
+
+
+
+
+
+
+
+  // ポップアップ処理（省略せず記述）
+  
+
+/* ==== Popup（同一グループのみ） ==== */
+(() => {
+  const popup = document.getElementById("popup");
+  const popupImage = document.getElementById("popup-image");
+  const popupDescription = document.getElementById("popup-description");
+  const overlay = document.querySelector(".popup-overlay");
+  const prevBtn = document.getElementById("prev-button");
+  const nextBtn = document.getElementById("next-button");
+
+  // ベースクラスを除いたものを「グループ」とみなす（自動検出）
+  const BASE = new Set(["item","photo","video","design","other"]);
+  const GROUPS = new Set(
+    [...document.querySelectorAll(".gallery .item")]
+      .flatMap(el => [...el.classList])
+      .filter(c => !BASE.has(c))
+  );
+
+  function getGroupClass(el){
+    return [...el.classList].find(c => GROUPS.has(c)) || null;
+  }
+
+  let currentGroup = [];
+  let currentIndex = 0;
+  let isPopupVisible = false;
+  let scrollTimeout;
+
+  function showPopup() {
+    const currentItem = currentGroup[currentIndex];
+    if (!currentItem) return;
+    const img = currentItem.querySelector("img");
+    popupImage.src = img ? img.src : "";
+    popupDescription.textContent = "";
+    popup.classList.remove("hidden","fade-out");
+    isPopupVisible = true;
+  }
+
+  menuToggle.addEventListener('click', () => {
+  menuOverlay.classList.toggle('active');
+  document.body.classList.toggle('menu-open');
+});
+
+
+
+
+  // 「VIEW MORE」クリック → 同じグループだけを対象にする
+  document.querySelectorAll(".overlay a").forEach(link => {
+    link.addEventListener("click", e => {
+      e.preventDefault();
+      const item = e.target.closest(".item");
+      if (!item) return;
+
+      const groupClass = getGroupClass(item); // 例: "grapefruit" / "germany3"
+      if (!groupClass) return;
+
+      currentGroup = Array.from(document.querySelectorAll(`.item.${groupClass}`));
+      currentIndex = currentGroup.indexOf(item);
+      showPopup();
+    });
+  });
+
+  // 矢印ナビ（同一 currentGroup 内で循環）
+  prevBtn?.addEventListener("click", () => {
+    if (!currentGroup.length) return;
+    currentIndex = (currentIndex - 1 + currentGroup.length) % currentGroup.length;
+    showPopup();
+  });
+  nextBtn?.addEventListener("click", () => {
+    if (!currentGroup.length) return;
+    currentIndex = (currentIndex + 1) % currentGroup.length;
+    showPopup();
+  });
+
+  // 閉じる
+  overlay?.addEventListener("click", () => {
+    popup.classList.add("hidden");
+    isPopupVisible = false;
+  });
+
+  // スクロールで自然に閉じる
+  window.addEventListener("scroll", () => {
+    if (isPopupVisible && !popup.classList.contains("hidden") && !popup.classList.contains("fade-out")) {
+      popup.classList.add("fade-out");
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        popup.classList.add("hidden");
+        popup.classList.remove("fade-out");
+        isPopupVisible = false;
+      }, 500);
+    }
+  });
+})();
+
+
+// jQuery（Isotope）
+$(document).ready(function () {
+  var $gallery = $('.gallery').isotope({
+    itemSelector: '.item',
+    layoutMode: 'fitRows'
+  });
+
+  $('.button-group .button').on('click', function () {
+    $('.button-group .button').removeClass('active');
+    $(this).addClass('active');
+    var filterValue = $(this).attr('data-filter');
+    $gallery.isotope({ filter: filterValue });
+  });
+
+  
+});
+</script>
