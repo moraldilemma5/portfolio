@@ -28,18 +28,23 @@
       <button class="nav-btn" onclick="navigateTo('contact')">Contact</button>
     </div>
   </header>
-  <div id="mainvisual">
-    <video id="bg-video" autoplay muted playsinline loop>
+  <div id="mainvisual" class="relative">
+    <video id="bg-video" autoplay muted playsinline loop class="w-full h-screen object-cover">
       <source src="img/background2.mp4" type="video/mp4">
     </video>
-  
-    <div id="subvisual">
-      <video id="sub-bg-video" autoplay muted playsinline loop>
-        <source src="img/seaquence01_2.mp4" type="video/mp4">
-      </video>
-    </div>
+    <div id="gradient-overlay"
+    class="absolute bottom-0 left-0 w-full h-[300px] pointer-events-none 
+           bg-gradient-to-b from-transparent to-white opacity-0">
+</div>
+
+<div id="subvisual" class="absolute inset-0">
+  <video id="sub-bg-video" autoplay muted playsinline loop class="w-full h-screen object-cover">
+    <source src="img/seaquence01_2.mp4" type="video/mp4">
+  </video>
+</div>
   </div>
-  <div class="mainvisual-placeholder"></div>
+
+  <div class="bg-white">
 
   <section id="works" class="wrapper">
     <h2 class="sec-title sec-title-works activetext-4xl font-bold text-gray-900 mb-8 
@@ -173,7 +178,7 @@
       <div class="button"><input type="submit" value="送信"></div>
     </form>
   </section>
-
+</div>
   <footer id="footer">
     <p>&copy; 2025 My Work</p>
   </footer>
@@ -182,6 +187,8 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
 
 <script>
+  
+
 
 
 //カーソル//
@@ -219,6 +226,22 @@ document.addEventListener("mousedown", () => {
 });
 
 document.addEventListener('DOMContentLoaded', () => {
+
+
+
+  const mainvisual = document.getElementById("mainvisual");
+
+window.addEventListener("scroll", () => {
+  const scrollY = window.scrollY;
+  const fadeStart = 0;                     // フェード開始位置
+  const fadeEnd = window.innerHeight * 0.6; // フェード終了位置（画面の8割スクロールしたら消える）
+
+  // 0〜1 に正規化
+  const opacity = Math.max(0, Math.min(1, 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart)));
+
+  mainvisual.style.opacity = opacity;
+});
+
   // subvisualのフェード処理
   window.addEventListener('scroll', () => {
     const scrollY = window.scrollY;

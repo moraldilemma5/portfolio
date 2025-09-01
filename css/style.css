@@ -185,6 +185,7 @@ header {
   left: 0;
   width: 100%;
   height: 100vh;
+  transition: opacity 0.3s ease-out;
   z-index: -1; 
 }
 
@@ -201,10 +202,9 @@ header {
 
 #subvisual {
   position: fixed;
-  top: 500px;   /* 上からの位置 */
-  right: 280px; /* 右からの位置 */
+  top: 600px;   /* 上からの位置 */
+  right: 260px; /* 右からの位置 */
   width: 300px; /* サブビジュアルの幅（お好みで調整） */
-  width: 20vw;
 }
 
 #subvisual video {
