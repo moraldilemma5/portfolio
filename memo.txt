@@ -1,0 +1,282 @@
+ npx @tailwindcss/cli -i ./css/style.css -o ./css/output.css --watch
+
+
+.sec-title-works {
+  position: relative !important;
+  left: -100px !important;     
+  top: -50px !important;       /* 上に30px移動 */
+  font-size: 3.0rem !important; /* フォントサイズを大きく */
+  font-weight: bold;            /* 太字 */
+  opacity: 0 !important;
+  transition: left 0.5s ease-out, top 0.5s ease-out, opacity 0.5s ease-out !important;
+  text-align: center !important;
+  color: #27292c;
+  text-shadow: #24292e;
+}
+
+.sec-title-works.active {
+  left: 0 !important;
+  top: 0 !important; /* アクティブ時は元の位置に戻す */
+  opacity: 1 !important;
+}
+#works ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end; /* 右寄せ */
+  margin: 0; /* 中央寄せの余白を削除 */
+  gap: 20px; /* サムネイル間の間隔 */
+}
+
+#works li {
+  width: 31%;       /* お好みで調整 */
+  margin-bottom: 23px;
+}
+.portfolio {
+  opacity: 0;
+  transform: translateX(100px); /* 右から出現 */
+  transition: transform 1s ease, opacity 1s ease;
+}
+.portfolio.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+@media (max-width: 768px) {
+  #subvisual {
+    width: 50%; /* 狭い画面は幅広く */
+    bottom: 10px;
+    right: 10px;
+  }
+  #subvisual video {
+    transform: none; /* 位置調整なしにしてみる */
+  }
+
+}
+
+/* Button */
+.button-group {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.button-group .button {
+  padding: 10px 20px;
+  color: #000000;
+  border: none;
+  cursor: pointer;
+  outline: none;
+  border-radius: 3px;
+  display: inline-block;
+  margin: 5px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  transition: all 0.4s;
+}
+.button.active {
+  background-color: #000;
+  color: #ffffff;
+}
+.button:hover {
+  background-color: #c5d5e9;
+  color: #131313;
+}
+.mainContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  padding: 50px 30px;
+  gap: 50px;
+  overflow: hidden;
+}
+/* Gallery */
+
+.gallery-wrapper {
+  flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+}
+.gallery {
+  width: 100%;
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0;               /* 内側余白 */
+  display: grid;   
+  gap: 3;  
+  grid-template-columns: repeat(1, 1fr);  
+}
+.gallery .item {
+  width: 30%;               /* お好みで調整 */
+  aspect-ratio: 5 / 3.5;      /* 表示エリアの比率を5:3に固定 */
+  overflow: hidden;
+  cursor: pointer;
+  margin: 0;
+}
+
+.gallery .item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;        /* はみ出す部分は切り取り、枠いっぱいに表示 */
+  object-position: center;  /* 中央寄せ */
+  display: block;
+}
+
+.gallery .item:hover img {
+  transform: scale(1.15);
+  transition: 0.3s ease;
+}
+
+.item .overlay {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  color: black;
+  padding: 15px;
+  overflow: hidden;
+  transition: 0.2s ease-in-out;
+  opacity: 0;
+}
+
+.item:hover .overlay {
+  opacity: 1;
+}
+
+.item .overlay a {
+  display: inline-block;
+  padding: 8px 14px;
+  color: #fff;
+  border: 0.8px solid;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.item .overlay a:hover {
+  transform: translateY(-1px);
+}
+
+.item .overlay a:active {
+  transform: translateY(1px);
+}
+.item[data-thumbnail="false"] {
+  display: none;
+}
+
+/* サムネイルで一枚だけ表示 */
+.item[data-thumbnail="false"] {
+  display: none;
+}
+
+/* ポップアップ全体 */
+.popup {
+  position: fixed;
+  inset: 0; 
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.5s ease;
+  z-index: 10000;
+}
+
+/* ポップアップ表示中 */
+.popup:not(.hidden) {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* オーバーレイ */
+.popup-overlay {
+  position: absolute;
+  inset: 0;
+  background: transparent; /* 透明でクリックを受け取る */
+  cursor: default;
+}
+
+/* コンテンツ部分 */
+.popup-content {
+  position: relative;
+  padding: 20px;
+  max-width: 80%;
+  max-height: 80%;
+  z-index: 10;
+  overflow: hidden;
+}
+
+/* 画像 */
+.popup-content img {
+  max-width: 100%;
+  max-height: 50vh;
+}
+
+/* 説明文 */
+#popup-description {
+  margin-top: 12px;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* ボタン（画像内に矢印配置） */
+.popup-nav {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px;
+  pointer-events: none; /* 全体は透明にしておく */
+  z-index: 20;
+}
+
+.popup-nav button {
+  pointer-events: auto; /* ボタンのみクリック可能に */
+  width: 40px;
+  height: 40px;
+  border: none;
+  color: white;
+  font-size: 24px;
+  line-height: 40px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  user-select: none;
+}
+
+.popup-nav button:hover {
+  background-color: rgba(0, 0, 0, 0.423);
+}
+
+/* 閉じるボタンは非表示 */
+.popup-close {
+  display: none !important;
+}
+
+/* フェードアウト用クラス */
+.popup.fade-out {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+
+@media(max-width: 1024px){
+  .gallery .item{
+    width: calc(50% - 8px);
+  }
+}
+
+@media(max-width: 600px){
+  .gallery .item{
+    width: 100%;
+    margin: 4px 0px;
+  }
+}

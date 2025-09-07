@@ -9,8 +9,10 @@ body {
   margin: 0;
   padding: 0;
   color: #24292e;
-  font-family: sans-serif;
+  font-family:"IBM Plex Sans", sans-serif;
+  
 }
+
 /* カスタムカーソルの基本 */
 
 
@@ -31,27 +33,6 @@ li {
   font-size: 0.9rem;
   padding: 0 10%;
 }
-
-/* サイトタイトル（大きく左上に配置） */
-.site-title.hidden {
-  opacity: 0;
-  pointer-events: none; /* クリックできなくする */
-  transition: opacity 0.3s ease;
-}
-.site-title {
-  position: absolute;
-  top: 20px;
-  left: 40px;
-  font-size: 60px;
-  font-weight: bold;
-  color: rgb(0, 0, 0);
-  z-index: 10;
-  transition: opacity 0.3s ease;
-}
-.site-title a {
-  display: block;
-}
-
 
 
 /* ヘッダー */
@@ -109,7 +90,9 @@ header {
   border-radius: 3px;
   transition: all 0.3s ease;
 }
-
+.menu-icon.scrolled span {
+  background-color: black;
+}
 /* メニュー全体（右からスライドイン） */
 .menu-overlay {
   position: fixed;
@@ -164,7 +147,27 @@ header {
 .menu-overlay .nav-btn:hover::after {
   width: 100%;
 }
+.menu-icon.scrolled span {
+  background-color: black;
+}
 
+/* メニューオーバーレイ背景やテキストの反転 */
+.menu-overlay.scrolled {
+  background-color: rgb(101, 101, 101);
+  box-shadow:#000
+}
+
+.menu-overlay.scrolled .nav-btn {
+  color: white;
+}
+
+.menu-overlay.scrolled .nav-btn::after {
+  background-color: white;
+}
+
+.menu-overlay.scrolled .nav-btn:hover {
+  color: #ccc;
+}
 
 .menu-overlay.active .nav-btn:nth-child(1) { animation-delay: 0.1s; }
 .menu-overlay.active .nav-btn:nth-child(2) { animation-delay: 0.25s; }
@@ -177,6 +180,23 @@ header {
     transform: translateY(0);
   }
 }
+#whiteOverlay {
+  background: white;
+  opacity: 0;
+  filter: blur(0px);
+  transition: none;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  z-index: 10;
+}
+#bg-video,
+#subvisual video {
+  transition: none;
+  opacity: 1;
+  position: relative;
+  z-index: 0;
+}
 
 /* Main Visual */
 #mainvisual {
@@ -185,7 +205,6 @@ header {
   left: 0;
   width: 100%;
   height: 100vh;
-  transition: opacity 0.3s ease-out;
   z-index: -1; 
 }
 
@@ -197,13 +216,17 @@ header {
   height: 100%;
   object-fit: cover;
   z-index: -1;
-
 }
+@keyframes floaty {
+  0%, 100% { transform: translateY(0) translateX(0); }
+  50% { transform: translateY(-20px) translateX(10px); }
+}
+
 
 #subvisual {
   position: fixed;
-  top: 600px;   /* 上からの位置 */
-  right: 260px; /* 右からの位置 */
+  top: 550px;   /* 上からの位置 */
+  right: 280px; /* 右からの位置 */
   width: 300px; /* サブビジュアルの幅（お好みで調整） */
 }
 
@@ -213,6 +236,19 @@ header {
   display: block;
   object-fit: cover;
 }
+#mainvisual {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+}
+
+#bg-video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+}
+
 @media (max-width: 768px) {
   #subvisual {
     top: 300px;
@@ -235,92 +271,27 @@ header {
   text-align: justify;
 }
 
-/* Works */
-
-
-.sec-title-works {
-  position: relative !important;
-  left: -100px !important;     /* 左位置はそのまま */
-  top: -50px !important;       /* 上に30px移動 */
-  font-size: 3.0rem !important; /* フォントサイズを大きく */
-  font-weight: bold;            /* 太字 */
-  opacity: 0 !important;
-  transition: left 0.5s ease-out, top 0.5s ease-out, opacity 0.5s ease-out !important;
-  text-align: center !important;
-  color: #27292c;
-  text-shadow: #24292e;
-}
-
-.sec-title-works.active {
-  left: 0 !important;
-  top: 0 !important; /* アクティブ時は元の位置に戻す */
-  opacity: 1 !important;
-}
-#works ul {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: flex-end; /* 右寄せ */
-  margin: 0; /* 中央寄せの余白を削除 */
-  gap: 20px; /* サムネイル間の間隔 */
-}
-
-#works li {
-  width: 31%;       /* お好みで調整 */
-  margin-bottom: 23px;
-}
-.portfolio {
-  opacity: 0;
-  transform: translateX(100px); /* 右から出現 */
-  transition: transform 1s ease, opacity 1s ease;
-}
-.portfolio.active {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-
-@media (max-width: 768px) {
-  #subvisual {
-    width: 50%; /* 狭い画面は幅広く */
-    bottom: 10px;
-    right: 10px;
-  }
-  #subvisual video {
-    transform: none; /* 位置調整なしにしてみる */
-  }
-
-  #flower-bg-video {
-    max-width: 60%;
-    width: 60%;
-    height: auto;
-    transform: none;
-  }
-
-  #flowervisual {
-    padding-left: 5%;
-  }
-}
-
 /* Button */
 .button-group {
   display: flex;
-  flex-direction: column;
-  gap: 15px;
-  margin-bottom: 30px;
+  flex-wrap: wrap;
+  gap: 10px;
+  animation: slideInLeft 3s ease forwards;
+  margin-bottom: 0;
 }
-
 .button-group .button {
-  padding: 10px 20px;
-  color: #000000;
-  border: none;
+  border: 1px solid #000;
   cursor: pointer;
   outline: none;
-  border-radius: 3px;
-  display: inline-block;
   margin: 5px;
   text-transform: uppercase;
   letter-spacing: 1px;
   transition: all 0.4s;
+  background-color: transparent;
+  padding: 10px 20px;
+  color: #000000;
+  border-radius: 1px;
+  display: inline-block;
 }
 .button.active {
   background-color: #000;
@@ -331,35 +302,54 @@ header {
   color: #131313;
 }
 .mainContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-end;
-  padding: 50px 30px;
-  gap: 50px;
-  overflow: hidden;
+  display: flex;             /* 横並びにする */
+  align-items: flex-start;   /* 上揃え */
+  gap: 2rem;                 /* ボタンとギャラリーの間隔 */
 }
-/* Gallery */
 
-.gallery-wrapper {
+/* Works */
+
+
+.portfolio {
+  order: 1; /* 前に表示 */
   flex: 1;
+}
+.portfolio.active {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+
+.gallery {
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;                  /* アイテム間の間隔 */
+  justify-content: center;
+  animation: slideInLeft 4s ease forwards;
+  min-height: 800px; /* 仮に800pxを確保 */
+  position: relative;
+}
+.gallery-wrapper {
   display: flex;
   flex-wrap: wrap;
-}
-.gallery {
+  flex: 1;
+  justify-content: center; 
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* レスポンシブ */
+  gap: 30px; 
+  position: relative;
   width: 100%;
-  max-width: 960px;
-  margin: 0 auto;
-  padding: 0;               /* 内側余白 */
-  display: grid;   
-  gap: 0;  
-  grid-template-columns: repeat(1, 1fr);              /* サムネイル間の間隔 */    /* 背景白 */
+  height: 100vh; /* 画面いっぱいに表示。必要ならpxでも可 */
+  overflow: hidden;
 }
 .gallery .item {
-  width: 30%;               /* お好みで調整 */
+  width: 20%;  
+  height: auto;             /* お好みで調整 */
   aspect-ratio: 5 / 3.5;      /* 表示エリアの比率を5:3に固定 */
   overflow: hidden;
   cursor: pointer;
   margin: 0;
+  transform: rotate(calc(-3deg + 6deg * var(--i)));
+  position: absolute;
+  transition: all 0.8s ease;
 }
 
 .gallery .item img {
@@ -369,22 +359,26 @@ header {
   object-position: center;  /* 中央寄せ */
   display: block;
 }
-
+.thumbnail-group {
+  display: grid;
+  flex-direction: column;   /* 縦に並べる */
+  align-items: center;      /* グループ内も中央寄せ */
+  gap: 20px;
+}
 .gallery .item:hover img {
   transform: scale(1.15);
   transition: 0.3s ease;
 }
 
 .item .overlay {
-  position: absolute;
+  position: relative;
   width: 100%;
   height: 100%;
   top: 0;
   left: 0;
   justify-content: center;
   align-items: center;
-  display: flex;
-  color: black;
+  display: grid;
   padding: 15px;
   overflow: hidden;
   transition: 0.2s ease-in-out;
@@ -420,49 +414,52 @@ header {
   display: none;
 }
 
+
+
+
 /* ポップアップ全体 */
 .popup {
   position: fixed;
-  inset: 0; 
-  background-color: rgba(255, 255, 255, 0.5);
+  inset: 0;
   display: flex;
-  align-items: center;
   justify-content: center;
-  
+  align-items: center;
+  z-index: 10000;
   opacity: 0;
   pointer-events: none;
-  transition: opacity 0.5s ease;
-  z-index: 10000;
+  transition: opacity 0.3s ease;
 }
 
-/* ポップアップ表示中 */
 .popup:not(.hidden) {
   opacity: 1;
   pointer-events: auto;
 }
 
-/* オーバーレイ */
 .popup-overlay {
-  position: absolute;
-  inset: 0;
-  background: transparent; /* 透明でクリックを受け取る */
-  cursor: default;
+  position: flex;
+  background-color: white; /* 真っ白 */
+  z-index: 10000;
 }
 
-/* コンテンツ部分 */
 .popup-content {
   position: relative;
-  padding: 20px;
-  max-width: 80%;
-  max-height: 80%;
-  z-index: 10;
-  overflow: hidden;
+  z-index: 10001;
 }
 
-/* 画像 */
+
+/* オーバーレイ */
+
+
+/* コンテンツ部分 */
+
+
 .popup-content img {
   max-width: 100%;
-  max-height: 50vh;
+  max-height: 80vh; /* 画面高さに収まるように */
+  object-fit: contain; /* 縦横比を保つ */
+  margin: 0 auto;      /* 中央寄せ */
+  display: block;
+  z-index: 2;
 }
 
 /* 説明文 */
@@ -473,6 +470,7 @@ header {
 }
 
 /* ボタン（画像内に矢印配置） */
+/* 矢印を画面中央に固定して画像の外に */
 .popup-nav {
   position: absolute;
   top: 50%;
@@ -481,13 +479,16 @@ header {
   transform: translateY(-50%);
   display: flex;
   justify-content: space-between;
-  padding: 0 20px;
-  pointer-events: none; /* 全体は透明にしておく */
-  z-index: 20;
+  width: 100%; /* 画面全体 */
+  padding: 0 40px;
+  z-index: 20000; /* 画像より上 */
+  pointer-events: none;
 }
 
 .popup-nav button {
-  pointer-events: auto; /* ボタンのみクリック可能に */
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
   width: 40px;
   height: 40px;
   border: none;
@@ -497,7 +498,10 @@ header {
   cursor: pointer;
   transition: background-color 0.3s ease;
   user-select: none;
+  background: transparent;
+  z-index: 30;
 }
+
 
 .popup-nav button:hover {
   background-color: rgba(0, 0, 0, 0.423);
@@ -527,6 +531,7 @@ header {
     margin: 4px 0px;
   }
 }
+
 
 /* News */
 #news dl {
@@ -591,16 +596,46 @@ header {
   padding: 10px 20px;
   text-align: center;
 }
+/* Worksタイトル用 */
+.sec-title-works {    /* 大きめサイズ（例：56px） */
+  text-align: left;       /* 左寄せ */
+  margin: 0 0 4rem 0;     /* 下に余白 */
+  opacity: 0;             /* 初期は透明 */
+  animation: slideInLeft 3s ease forwards;
+}
 
+.sec-title-project {    /* 大きめサイズ（例：56px） */
+  text-align: left;       /* 左寄せ */
+  margin: 0 0 4rem 0;    /* 下に余白 */
+  opacity: 0;             /* 初期は透明 */
+  animation: slideInLeft 3s ease forwards;
+}
+.fade-in-up {
+  opacity: 0;
+  transform: translateY(40px) scale(0.95);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in-up.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+/* アニメーション定義 */
+@keyframes slideInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 @media screen and (max-width: 600px) {
   .wrapper {
     margin-bottom: 70px;
   }
-  .site-title {
-    font-size: 50px;
-    left: 20px;
-    top: 10px;
-  }
+
   .sec-title {
     margin-bottom: 40px;
   }
