@@ -12,6 +12,29 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  <!-- ギャラリーが表示されない場合のフォールバック / 最低限のレイアウト補強 -->
+  <style>
+    /* Works タイトル初期状態（JSでフェードイン） */
+    #works-title.opacity-0 { opacity:0; }
+    .gallery { width:100%; position:relative; }
+    .gallery-wrapper { width:100%; }
+    /* Isotope なしでも整列されるようにフレックスフォールバック */
+    .no-isotope .gallery { display:flex; flex-wrap:wrap; gap:1rem; }
+    .gallery .thumbnail-group { position:relative; }
+    .gallery .item { position:relative; box-sizing:border-box; margin:0 0 1rem; }
+    /* 幅のフォールバック（Isotope 有効時は無視されやすいが確実に表示確保） */
+    .no-isotope .gallery .item { flex:1 0 calc(25% - 1rem); }
+    @media (max-width:1024px){ .no-isotope .gallery .item { flex:1 0 calc(33.333% - 1rem); } }
+    @media (max-width:640px){ .no-isotope .gallery .item { flex:1 0 calc(50% - 1rem); } }
+    .gallery .item img { width:100%; height:auto; display:block; object-fit:cover; }
+    .gallery .item .overlay { position:absolute; inset:0; background:rgba(0,0,0,.45); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .3s; font-size:.75rem; letter-spacing:.05em; color:#fff; text-decoration:none; }
+    .gallery .item:hover .overlay { opacity:1; }
+    /* アニメ用クラス（存在しないと非表示になるリスクを避ける） */
+    .fade-in-up { opacity:0; transform:translateY(20px); transition:opacity .6s, transform .6s; }
+    .fade-in-up.show { opacity:1; transform:translateY(0); }
+    /* Isotope レンダリング中に一瞬高さゼロになるのを回避 */
+    .gallery { min-height:200px; }
+  </style>
 </head>
 
 <body id="top">
@@ -50,21 +73,11 @@
       </video>
     </div>
   </div>
-
-
-    
-
-
   <section id="works" class="wrapper py-12">
-  
-
-
-      <div class="border-t border-gray-800"></div>
-      <h2 class="sec-title sec-title-project text-7xl font-bold fade-in-up text-left py-6
-      bg-gradient-to-b from-black via-blue-900  via-sky-800 to-blue-200
-      bg-clip-text text-transparent">
-Works
-</h2>
+  <div class="border-t border-gray-800"></div>
+  <h2 id="works-title" class="sec-title sec-title-project sec-title-works opacity-0 -translate-x-20 transition-all duration-700 text-7xl font-bold fade-in-up text-left py-6 bg-gradient-to-b from-black via-blue-900  via-sky-800 to-blue-200 bg-clip-text text-transparent">
+    Works
+  </h2>
 
 <div class="mt-3 border-b border-gray-800 mb-10"></div>
 
@@ -145,24 +158,29 @@ Works
         <div class="thumbnail-group shadow1">
           <div class="item photo shadow1"><img src="img/images/IMG_3080.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <div class="item photo shadow1"><img src="img/images/IMG_3090.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+        </div>
 
-          <!-- Video and Other -->
+        <!-- Video -->
+        <div class="thumbnail-group video">
           <div class="item video"><img src="img/images/grapefruits/9693DE9A-6ED2-4966-BFB4-B98B0A41A2F8 2.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <div class="item video"><img src="img/images/grapefruits/3E51A017-F844-4284-9B88-E7F9A9AB3851.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <div class="item video"><img src="img/images/grapefruits/0C8C8C00-25F3-4D2A-BE70-41F4D6DF422C.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <div class="item video"><img src="img/images/deutsch/鳩.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+        </div>
 
-          <!-- Design Aida -->
-          <div class="thumbnail-group aida">
+        <!-- Design Aida -->
+        <div class="thumbnail-group aida">
           <div class="item design aida"><img src="img/web_portfolio/Project/IMG_9878.WEBP"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <div class="item design aida"><img src="img/web_portfolio/Project/IMG_9879.WEBP"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
         </div>
-          <!-- Design Event1-->
-          <div class="thumbnail-group event1">
+
+        <!-- Design Event1 -->
+        <div class="thumbnail-group event1">
           <div class="item design event1"><img src="img/web_portfolio/Project/IMG_9877.WEBP"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
         </div>
-        <!-- Design Event2-->
-          <div class="thumbnail-group event2"></div>
+
+        <!-- Design Event2 -->
+        <div class="thumbnail-group event2">
           <div class="item design event2"><img src="img/web_portfolio/Project/sugu.jpeg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
         </div>
         <!-- Design Mataai-->
@@ -412,28 +430,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // ====== STEP 1: 最初はランダム配置 ======
   items.forEach((item, i) => {
-    const offsetX = (Math.random() - 0.5) * 200; // 横ランダム
-    const offsetY = i * -3;                      // 縦ちょいズレ
-    const rotate = (Math.random() - 0.5) * 6;    // -3〜+3度
-
-    item.style.position = "absolute";
-    item.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${rotate}deg)`;
-    item.style.zIndex = i + 1;
- 
-    // トランジションを追加（transformとpositionの変更をスムーズに）
-    item.style.transition = "all 2.0s ease-out";
+  const offsetX = (Math.random() - 0.5) * 160; // 横ランダム
+  const offsetY = (Math.random() - 0.5) * 160; // 縦ランダム（flowは崩さず演出のみ）
+  const rotate = (Math.random() - 0.5) * 8;    // -4〜+4度
+  // 位置(flow)は変えず transform のみで“散らかす”
+  item.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${rotate}deg)`;
+  item.style.transition = "transform 1.8s cubic-bezier(.16,.84,.44,1)";
   });
-
-  wrapper.style.position = "relative";
 
   // ====== STEP 2: 数秒後にリセット（ふわっと整列） ======
   setTimeout(() => {
     items.forEach((item) => {
-      item.style.position = "grid";   // CSSレイアウトに戻す
       item.style.transform = "";  // デフォルト位置へ
-      item.style.zIndex = "";
     });
-    wrapper.style.position = "";
+  // Isotope 再レイアウトを促すカスタムイベント
+  window.dispatchEvent(new Event('galleryReset'));
   }, 5000); // ← 3秒後に開始（トランジション1.5秒かけて動く）
 });
 
@@ -508,7 +519,7 @@ document.addEventListener("mousedown", () => {
 });
 
 // ==================== DOMが読み込まれたら実行 ====================
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener("DOMContentLoaded", () => {
 
 
 
@@ -549,41 +560,43 @@ animatedItems.forEach(item => observer.observe(item));
   } else {
     btnGroup?.classList.add('in-works');
   }
-  document.addEventListener("DOMContentLoaded", () => {
-  // タイトルのスクロールアニメーション
-  const title = document.getElementById("works-title");
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        title.classList.remove("opacity-0", "-translate-x-20");
-        title.classList.add("opacity-100", "translate-x-0");
-      }
-    });
-  }, { threshold: 0.3 });
-  observer.observe(title);
+  // タイトルのスクロールアニメーション（内側DOM Ready を統合）
+  const worksTitleEl = document.getElementById("works-title");
+  if (worksTitleEl) {
+    const titleObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          worksTitleEl.classList.remove("opacity-0", "-translate-x-20");
+          worksTitleEl.classList.add("opacity-100", "translate-x-0");
+        }
+      });
+    }, { threshold: 0.3 });
+    titleObserver.observe(worksTitleEl);
+  }
 
-  // IsotopeでPinterest風レイアウト
-  const grid = document.querySelector(".gallery");
-  const iso = new Isotope(grid, {
-    itemSelector: ".item",
-    layoutMode: "masonry", // Pinterest風
-    percentPosition: true,
-    masonry: {
-      columnWidth: ".item"
-    }
-  });
-
-  // ボタンのフィルタリング
-  const buttons = document.querySelectorAll(".button-group .button");
-  buttons.forEach(btn => {
-    btn.addEventListener("click", function () {
-      buttons.forEach(b => b.classList.remove("active", "bg-gray-900", "text-white"));
-      this.classList.add("active", "bg-gray-900", "text-white");
-      const filterValue = this.getAttribute("data-filter");
-      iso.arrange({ filter: filterValue });
+  // IsotopeでPinterest風レイアウト初期化
+  const grid = document.querySelector('.gallery');
+  if (grid && window.Isotope) {
+    const iso = new Isotope(grid, {
+      itemSelector: '.item',
+      layoutMode: 'masonry',
+      percentPosition: true,
+      masonry: { columnWidth: '.item' }
     });
-  });
-});
+  // 散らかし演出終了後に再レイアウト
+  window.addEventListener('galleryReset', () => iso.layout());
+
+    // フィルターボタン設定
+    const buttons = document.querySelectorAll('.button-group .button');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', function () {
+        buttons.forEach(b => b.classList.remove('active', 'bg-gray-900', 'text-white'));
+        this.classList.add('active', 'bg-gray-900', 'text-white');
+        const filterValue = this.getAttribute('data-filter');
+        iso.arrange({ filter: filterValue });
+      });
+    });
+  }
   // ========== ハンバーガーメニュー ==========
   document.addEventListener("scroll", () => {
   const menuIcon = document.getElementById("menuToggle");
@@ -738,37 +751,8 @@ animatedItems.forEach(item => observer.observe(item));
     items.forEach(item => item.classList.add('in-view'));
   }
 
-  // ========== ランダム配置（Isotopeと競合注意） ==========
-  const gallery = document.querySelector('.gallery-wrapper');
-  if (gallery) {
-    const items = gallery.querySelectorAll('.item');
-    items.forEach(item => {
-      const x = Math.random() * (gallery.clientWidth - item.clientWidth);
-      const y = Math.random() * 800;
-      item.style.position = 'absolute';
-      item.style.left = `${x}px`;
-      item.style.top = `${y}px`;
-    });
-    gallery.style.position = 'relative';
-    gallery.style.height = '1000px';
-  }
-
   // ========== jQuery（Isotope） ==========
-  if (window.jQuery) {
-    $(document).ready(function () {
-      var $gallery = $('.gallery').isotope({
-        itemSelector: '.item',
-        layoutMode: 'fitRows' // ランダム配置と競合しないよう注意
-      });
-
-      $('.button-group .button').on('click', function () {
-        $('.button-group .button').removeClass('active');
-        $(this).addClass('active');
-        var filterValue = $(this).attr('data-filter');
-        $gallery.isotope({ filter: filterValue });
-      });
-    });
-  }
+  // jQuery版の二重初期化は不要のため削除（上部で vanilla Isotope 済）
 });
 
 
