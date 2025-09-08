@@ -427,15 +427,18 @@ Contact
 document.addEventListener("DOMContentLoaded", () => {
   const wrapper = document.querySelector(".gallery-wrapper");
   const items = wrapper.querySelectorAll(".item");
+  const rect = wrapper.getBoundingClientRect();
 
-  // ====== STEP 1: 最初はランダム配置 ======
-  items.forEach((item, i) => {
-  const offsetX = (Math.random() - 0.5) * 160; // 横ランダム
-  const offsetY = (Math.random() - 0.5) * 160; // 縦ランダム（flowは崩さず演出のみ）
-  const rotate = (Math.random() - 0.5) * 8;    // -4〜+4度
-  // 位置(flow)は変えず transform のみで“散らかす”
-  item.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${rotate}deg)`;
-  item.style.transition = "transform 1.8s cubic-bezier(.16,.84,.44,1)";
+  const maxOffsetX = rect.width * 0.01;   // 横幅の10%
+  const maxOffsetY = rect.height * 0.01;  // 高さの10%
+
+  items.forEach((item) => {
+    const offsetX = (Math.random() - 0.5) * maxOffsetX * 2;
+    const offsetY = (Math.random() - 0.5) * maxOffsetY * 2;
+    const rotate = (Math.random() - 0.5) * 8;    // -4〜+4度
+    // 位置(flow)は変えず transform のみで“散らかす”
+    item.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${rotate}deg)`;
+    item.style.transition = "transform 1.8s cubic-bezier(.16,.84,.44,1)";
   });
 
   // ====== STEP 2: 数秒後にリセット（ふわっと整列） ======
