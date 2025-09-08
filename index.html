@@ -7,7 +7,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="icon" href="img/favicon.ico">
   <link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
+  <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="css/output.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap" rel="stylesheet">
+  <!-- ギャラリーが表示されない場合のフォールバック / 最低限のレイアウト補強 -->
+  <style>
+    /* Works タイトル初期状態（JSでフェードイン） */
+    #works-title.opacity-0 { opacity:0; }
+    .gallery { width:100%; position:relative; }
+    .gallery-wrapper { width:100%; }
+    /* Isotope なしでも整列されるようにフレックスフォールバック */
+    .no-isotope .gallery { display:flex; flex-wrap:wrap; gap:1rem; }
+    .gallery .thumbnail-group { position:relative; }
+    .gallery .item { position:relative; box-sizing:border-box; margin:0 0 1rem; }
+    /* 幅のフォールバック（Isotope 有効時は無視されやすいが確実に表示確保） */
+    .no-isotope .gallery .item { flex:1 0 calc(25% - 1rem); }
+    @media (max-width:1024px){ .no-isotope .gallery .item { flex:1 0 calc(33.333% - 1rem); } }
+    @media (max-width:640px){ .no-isotope .gallery .item { flex:1 0 calc(50% - 1rem); } }
+    .gallery .item img { width:100%; height:auto; display:block; object-fit:cover; }
+    .gallery .item .overlay { position:absolute; inset:0; background:rgba(0,0,0,.45); display:flex; align-items:center; justify-content:center; opacity:0; transition:opacity .3s; font-size:.75rem; letter-spacing:.05em; color:#fff; text-decoration:none; }
+    .gallery .item:hover .overlay { opacity:1; }
+    /* アニメ用クラス（存在しないと非表示になるリスクを避ける） */
+    .fade-in-up { opacity:0; transform:translateY(20px); transition:opacity .6s, transform .6s; }
+    .fade-in-up.show { opacity:1; transform:translateY(0); }
+    /* Isotope レンダリング中に一瞬高さゼロになるのを回避 */
+    .gallery { min-height:200px; }
+  </style>
 </head>
 
 <body id="top">
@@ -23,15 +50,22 @@
     <div class="menu-overlay" id="menuOverlay">
       <button class="nav-btn" onclick="navigateTo('top')">Top</button>
       <button class="nav-btn" onclick="navigateTo('works')">Works</button>
-      <button class="nav-btn" onclick="navigateTo('project')">Project</button>
       <button class="nav-btn" onclick="navigateTo('about')">About</button>
+      <button class="nav-btn" onclick="navigateTo('project')">Project</button>
       <button class="nav-btn" onclick="navigateTo('contact')">Contact</button>
     </div>
   </header>
-  <div id="mainvisual">
-    <video id="bg-video" autoplay muted playsinline loop>
+
+  
+  <div class="relative h-screen overflow-hidden"></div>
+  <div id="mainvisual" class="relative">
+    <div id="whiteOverlay"
+    class="absolute inset-0 bg-white opacity-0 transition-opacity duration-700 pointer-events-none z-10">
+  </div>
+    <video id="bg-video" autoplay muted playsinline loop class="w-full h-screen object-cover">
       <source src="img/background2.mp4" type="video/mp4">
     </video>
+
   
     <div id="subvisual">
       <video id="sub-bg-video" autoplay muted playsinline loop>
@@ -39,47 +73,51 @@
       </video>
     </div>
   </div>
-  <div class="mainvisual-placeholder"></div>
+  <section id="works" class="wrapper py-12">
+  <div class="border-t border-gray-800"></div>
+  <h2 id="works-title" class="sec-title sec-title-project sec-title-works opacity-0 -translate-x-20 transition-all duration-700 text-7xl font-bold fade-in-up text-left py-6 bg-gradient-to-b from-black via-blue-900  via-sky-800 to-blue-200 bg-clip-text text-transparent">
+    Works
+  </h2>
 
-  <section id="works" class="wrapper">
-    <h2 class="sec-title sec-title-works activetext-4xl font-bold text-gray-900 mb-8 
-    opacity-0 translate-y-8 animate-fade-in-up" >Works</h2>
+<div class="mt-3 border-b border-gray-800 mb-10"></div>
+
+<div class="flex justify-start mb-8">
+  <div class="button-group flex gap-4">
+    <button class="button active px-4 py-2 border rounded-full" data-filter="*">All</button>
+    <button class="button px-4 py-2 border rounded-full" data-filter=".photo">Photo</button>
+    <button class="button px-4 py-2 border rounded-full" data-filter=".video">Video&Music</button>
+    <button class="button px-4 py-2 border rounded-full" data-filter=".design">Design</button>
+    <button class="button px-4 py-2 border rounded-full" data-filter=".other">Other</button>
+  </div>
+</div>
+
     <section class="portfolio">
       
       <main class="mainContainer">
         <!-- Buttons -->
 
-        
-        <div class="button-group flex flex-wrap gap-3 mb-12">
-          <button class="button active" data-filter="*">All</button>
-          <button class="button" data-filter=".photo">Photo</button>
-          <button class="button" data-filter=".video">Video & Music</button>
-          <button class="button" data-filter=".design">Design</button>
-          <button class="button" data-filter=".other">Other</button>
-        </div>
-
         <div class="gallery-wrapper">
         <div class="gallery">
           <!-- Photo Grapefruit -->
           <div class="thumbnail-group grapefruit">
-          <div class="item photo grapefruit"><img src="img/images/grapefruits/F3B1439F-CDAE-40AE-B3F3-382399A51A84.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <div class="item photo grapefruit"><img src="img/images/grapefruits/B84B2093-3073-4B59-8889-1F3CB9F8D5FB.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
-          <div class="item photo grapefruit"><img src="img/images/grapefruits/9693DE9A-6ED2-4966-BFB4-B98B0A41A2F8 2.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <div class="item photo grapefruit"><img src="img/images/grapefruits/3E51A017-F844-4284-9B88-E7F9A9AB3851.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo grapefruit"><img src="img/images/grapefruits/9693DE9A-6ED2-4966-BFB4-B98B0A41A2F8 2.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo grapefruit"><img src="img/images/grapefruits/F3B1439F-CDAE-40AE-B3F3-382399A51A84.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <div class="item photo grapefruit"><img src="img/images/grapefruits/0C8C8C00-25F3-4D2A-BE70-41F4D6DF422C.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
         </div>
           <!-- Photo Germany1 -->
           <div class="thumbnail-group germany1">
-          <div class="item photo germany1"><img src="img/images/deutsch/P1066650.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <div class="item photo germany1"><img src="img/images/deutsch/P1066648.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany1"><img src="img/images/deutsch/P1066650.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <div class="item photo germany1"><img src="img/images/deutsch/P1066636.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <div class="item photo germany1"><img src="img/images/deutsch/IMG_2254.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
         </div>
           <!-- Photo Germany2 -->
         <div class="thumbnail-group germany2">
-          <div class="item photo germany2"><img src="img/images/deutsch/連続してる木.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
-          <div class="item photo germany2"><img src="img/images/deutsch/IMG_2558.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <div class="item photo germany2"><img src="img/images/deutsch/IMG_2556.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany2"><img src="img/images/deutsch/IMG_2558.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany2"><img src="img/images/deutsch/連続してる木.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <div class="item photo germany2"><img src="img/images/deutsch/IMG_2537.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <div class="item photo germany2"><img src="img/images/deutsch/IMG_2521.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
         </div>
@@ -98,69 +136,238 @@
           <div class="item photo germany4"><img src="img/images/deutsch/IMG_0458.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
         </div>
           <!-- Photo Germany5 -->
-          <div class="thumbnail-group germany">
+          <div class="thumbnail-group germany5">
           <div class="item photo germany5"><img src="img/images/deutsch/IMG_0355.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <div class="item photo germany5"><img src="img/images/deutsch/IMG_0344.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <div class="item photo germany5"><img src="img/images/deutsch/IMG_0093.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <div class="item photo germany5"><img src="img/images/deutsch/IMG_0086.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <div class="item photo germany5"><img src="img/images/deutsch/IMG_0070.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany5"><img src="img/images/deutsch/鳩.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
         </div>
-          <!-- Video and Other -->
+        <!-- Photo Ice -->
+        <div class="thumbnail-group ice">
+          <div class="item photo ice"><img src="img/images/ice/IMG_2186.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo ice"><img src="img/images/ice/P1000294.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo ice"><img src="img/images/ice/IMG_2050.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo ice"><img src="img/images/ice/IMG_2058.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo ice"><img src="img/images/ice/IMG_2060.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo ice"><img src="img/images/ice/P1000260.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo ice"><img src="img/images/ice/P1000267.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+        </div>
+        <!-- Photo Shadow -->
+        <div class="thumbnail-group shadow1">
+          <div class="item photo shadow1"><img src="img/images/IMG_3080.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo shadow1"><img src="img/images/IMG_3090.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+        </div>
+
+        <!-- Video -->
+        <div class="thumbnail-group video">
           <div class="item video"><img src="img/images/grapefruits/9693DE9A-6ED2-4966-BFB4-B98B0A41A2F8 2.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <div class="item video"><img src="img/images/grapefruits/3E51A017-F844-4284-9B88-E7F9A9AB3851.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <div class="item video"><img src="img/images/grapefruits/0C8C8C00-25F3-4D2A-BE70-41F4D6DF422C.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
-          <div class="item other"><img src="img/images/deutsch/鳩.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item video"><img src="img/images/deutsch/鳩.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
         </div>
-        <div id="popup" class="popup hidden">
-          <div class="popup-overlay"></div>
-          <div class="popup-content">
-            <button class="popup-close">&times;</button>
-            <img id="popup-image" src="" alt="Popup Image">
-            <p id="popup-description"></p>
-            <div class="popup-nav">
-              <button id="prev-button">&#8592;</button>
-              <button id="next-button">&#8594;</button>
-            </div>
+
+        <!-- Design Aida -->
+        <div class="thumbnail-group aida">
+          <div class="item design aida"><img src="img/web_portfolio/Project/IMG_9878.WEBP"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item design aida"><img src="img/web_portfolio/Project/IMG_9879.WEBP"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+        </div>
+
+        <!-- Design Event1 -->
+        <div class="thumbnail-group event1">
+          <div class="item design event1"><img src="img/web_portfolio/Project/IMG_9877.WEBP"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+        </div>
+
+        <!-- Design Event2 -->
+        <div class="thumbnail-group event2">
+          <div class="item design event2"><img src="img/web_portfolio/Project/sugu.jpeg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+        </div>
+        <!-- Design Mataai-->
+        <div class="thumbnail-group mataai">
+        <div class="item design mataai"><img src="img/web_portfolio/Project/_____ ___ いましょう.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+        <div class="item design mataai"><img src="img/web_portfolio/Project/また逢いサムネイル.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+        <div class="item design mataai"><img src="img/web_portfolio/Project/あがた森魚さんコメント.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+        <div class="item design mataai"><img src="img/web_portfolio/Project/mataai_butaiaisatu.jpeg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+      </div>
+        <!-- Other Twofaces-->
+        <div class="thumbnail-group twofaces">
+          <div class="item other twofaces"><img src="img/web_portfolio/artwork/個人プロジェクト/P1011232 2.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item other twofaces"><img src="img/web_portfolio/artwork/個人プロジェクト/P1011230 3.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item other twofaces"><img src="img/web_portfolio/artwork/個人プロジェクト/IMG_2488.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item other twofaces"><img src="img/web_portfolio/artwork/個人プロジェクト/P1010911.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+        </div>
+        <!-- Other Gomi-->
+        <div class="thumbnail-group gomi">
+          <div class="item other gomi"><img src="img/web_portfolio/artwork/布/IMG_2581.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item other gomi"><img src="img/web_portfolio/artwork/布/IMG_0045.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item other gomi"><img src="img/web_portfolio/artwork/布/IMG_1282.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item other gomi"><img src="img/web_portfolio/artwork/布/IMG_2547.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item other gomi"><img src="img/web_portfolio/artwork/布/無題284_20230627135343のコピー.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item other gomi"><img src="img/web_portfolio/artwork/drawing/IMG_6126.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+        </div>
+           <!-- Other garigari-->
+           <div class="thumbnail-group garigari">
+            <div class="item other garigari"><img src="img/web_portfolio/artwork/drawing/IMG_0425.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+            <div class="item other garigari"><img src="img/web_portfolio/artwork/drawing/IMG_0424.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           </div>
+           <!-- Other club-->
+           <div class="thumbnail-group club">
+            <div class="item other club"><img src="img/web_portfolio/other/ブランディング　作品集-21.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+            <div class="item other club"><img src="img/web_portfolio/other/無題349_20230906234445.PNG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+            <div class="item other club"><img src="img/web_portfolio/other/無題352_20230906235259.PNG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          </div>
+          <!-- Other drawing-->
+          <div class="thumbnail-group drawing">
+            <div class="item other drawing"><img src="img/web_portfolio/artwork/drawing/IMG_2994.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+            <div class="item other drawing"><img src="img/web_portfolio/artwork/drawing/IMG_5276.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+            <div class="item other drawing"><img src="img/web_portfolio/artwork/drawing/IMG_5277.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+            <div class="item other drawing"><img src="img/web_portfolio/artwork/drawing/IMG_5282.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+            <div class="item other drawing"><img src="img/web_portfolio/artwork/drawing/IMG_5284.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+            <div class="item other drawing"><img src="img/web_portfolio/artwork/drawing/IMG_3278.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+            <div class="item other drawing"><img src="img/web_portfolio/artwork/drawing/IMG_1939.jpg"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          </div>
+       <!-- Other cartoon-->
+       <div class="thumbnail-group cartoon">
+        <div class="item other cartoon"><img src="img/web_portfolio/other/77_20230126225458.JPG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+        <div class="item other cartoon"><img src="img/web_portfolio/other/120_20210409173419.PNG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+        <div class="item other cartoon"><img src="img/web_portfolio/other/132_20210401231847.PNG"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+        
+      </div>
+
         </div>
+        <div id="popup" class="hidden fixed inset-0 z-50 flex items-center justify-center">
+          <!-- 白背景 -->
+          <div class="popup-overlay flex inset-0 bg-white"></div>
+        
+          <!-- コンテンツ -->
+          <div class="popup-content relative z-50 p-4 max-w-[90vw] max-h-[90vh] overflow-auto">
+            <button class="popup-close absolute top-2 right-2 text-2xl text-black ">&times;</button>
+            <img id="popup-image" src="" alt="Popup Image" class="max-w-full max-h-[80vh] mx-auto">
+            <p id="popup-description" class="mt-2 text-gray-700"></p>
+          </div>
+        
+          <!-- 矢印を画像外に配置 -->
+          <button id="prev-button" class="absolute left-2 top-1/2 -translate-y-1/2 px-4 py-2 bg-sky-600 text-white rounded">←</button>
+          <button id="next-button" class="absolute right-2 top-1/2 -translate-y-1/2 px-4 py-2 bg-sky-600 text-white rounded">→</button>
+        </div>
+        
+        
       </main>
     </section>
   </section>
 
-  <section id="project" class="wrapper">
-    <h2 class="sec-title sec-title-project">Project</h2>
-    <dl>
-      <dt>2020.XX.XX</dt>
-      <dd>デザイン雑誌「ＸＸＸＸＸＸ Vol.11』に掲載していただきました。</dd>
-      <dt>2020.XX.XX</dt>
-      <dd>ＸＸ月ＸＸ日からimages集「ＸＸＸＸＸＸＸ」の販売を開始します。</dd>
-      <dt>2019.XX.XX</dt>
-      <dd>【イベント開催のお知らせ】テキストテキストテキストテキストテキストテキストテキスト</dd>
-      <dt>2019.XX.XX</dt>
-      <dd>デザイン雑誌「ＸＸＸＸＸＸ Vol.10』に掲載していただきました。</dd>
-      <dt>2019.XX.XX</dt>
-      <dd>【個展開催のお知らせ】テキストテキストテキストテキストテキストテキストテキスト</dd>
-    </dl>
-  </section>
+  <section id="about" class="wrapper relative">
+    <div class="mb-12">
+      <div class="border-t border-gray-800 mt-20"></div>
+      <h2 class="sec-title sec-title-project text-7xl font-bold fade-in-up text-left py-6
+        bg-gradient-to-b from-black via-blue-900 via-sky-800 to-blue-200
+        bg-clip-text text-transparent">
+        About
+      </h2>
+      <div class="mt-3 border-b border-gray-800"></div>
+    </div>
+  
+    <!-- About内容 -->
+    <div class="flex flex-col md:flex-row items-center gap-8 mt-10">
+      <!-- 左: 画像 -->
+      <div class="w-full md:w-1/3 flex justify-center">
+        <img src="img/無題77_20230126225458.JPG" alt="プロフィール写真" class="">
+      </div>
+  
+      <!-- 右: 自己紹介テキスト -->
+      <div class="w-full md:w-2/3 text-gray-800">
+        <h4 class="text-1xl p-1">ヤマダ アオイ</h4>
+        <h3 class="text-3xl font-bold mb-4">山田 葵</h3>
 
-  <section id="about" class="wrapper">
-    <h2 class="sec-title sec-title-about">About</h2>
-    <ul>
-      <li>Xxxxx Ashley</li>
-      <li>2th Floor xxxxx Building x-x-x Nishiazabu, Minato-ku, Tokyo 106-0031 Japan</li>
-      <li>tel: 000-0000-0000</li>
-      <li>url: www.xxxxxx.jp</li>
-      <li>mail: xxx@xxxxxx.jp</li>
-    </ul>
-    <p>
-      プロフィールテキストテキストテキストテキストテキストテキストテキストテキストテキストスト
-      テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-      テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-    </p>
+        <p class="text-lg leading-relaxed mb-4">
+          ここに自己紹介や自己PRを書きます。<br>
+          例えば：デザインやコーディングを専門に活動していて、特にWeb制作やフロントエンド開発を得意としています。
+        </p>
+        <p class="text-lg leading-relaxed">
+          興味を持っている分野や実績などを書いて、訪問者に「あなたがどんな人か」を伝えられるようにすると効果的です。
+        </p>
+      </div>
+    </div>
   </section>
+  
+
+
+  <section id="project" class="wrapper relative">
+    <div class="mb-12">
+      <div class="border-t border-gray-800 mt-20"></div>
+      <h2 class="sec-title sec-title-project text-7xl font-bold fade-in-up text-left py-6
+      bg-gradient-to-b from-black via-blue-900  via-sky-800 to-blue-200
+      bg-clip-text text-transparent">
+Project
+</h2>
+
+      <div class="mt-3 border-b border-gray-800"></div>
+    </div>
+  
+    <!-- timeline -->
+    <div id="timeline" class="relative border-l-4 border-sky-600 ml-6 space-y-12 h-[1200px] ">
+      <!-- カーソル連動の丸 -->
+      <div id="timeline-marker"
+           class="absolute -left-[16px] top-0 w-7 h-7 bg-sky-800 rounded-full shadow-md transition-transform duration-100"></div>
+  
+      <!-- イベント -->
+      <div class="relative group pl-8">
+        <div class="p-4 transition duration-300">
+          <time class="block text-2xl text-gray-500">2020年4月</time>
+          <h3 class="font-semibold text-3xl transition-all m-3 duration-300 group-hover:text-4xl">
+            京都精華大学デザイン学部イラスト学科イラストコース 入学
+          </h3>
+          <p class="text-gray-600 text-2xl">デザインと芸術の両方を学ぶ</p>
+        </div>
+      </div>
+  
+      <div class="relative group pl-8">
+        <div class="p-4 transition duration-300">
+          <time class="block text-2xl text-gray-500">2023年10月〜2024年3月</time>
+          <h3 class="font-semibold text-4xl transition-all m-3 duration-300 group-hover:text-5xl">
+            ドイツのカッセルに交換留学
+          </h3>
+          <p class="text-gray-600 text-2xl">カッセル芸術大学で映像とサウンドプログラミングを学ぶ。</p>
+        </div>
+      </div>
+  
+      <div class="relative group pl-8">
+        <div class="p-4 transition duration-300">
+          <time class="block text-2xl text-gray-500">2024年10月〜2025年6月</time>
+          <h3 class="font-semibold text-4xl transition-all m-3 duration-300 group-hover:text-5xl">
+            大学を休学する
+          </h3>
+          <p class="text-gray-600 text-2xl">カッセル芸術大学で映像とサウンドプログラミングを学ぶ。</p>
+        </div>
+      </div>
+  
+      <div class="relative group pl-8">
+        <div class="p-4 transition duration-300">
+          <time class="block text-2xl text-gray-500">2025年4月〜</time>
+          <h3 class="font-semibold text-3xl transition-all m-3 duration-300 group-hover:text-4xl">
+            有限会社オムロにて
+          </h3>
+          <p class="text-gray-600 text-2xl">ベルリン芸術大学で写真と映像を学ぶ。</p>
+      </div>
+    </div>
+  </section>
+  
+  
+
+
+  
 
   <section id="contact" class="wrapper">
-    <h2 class="sec-title sec-title-contact">Contact</h2>
+      <div class="border-t border-gray-800 mt-20"></div>
+      <h2 class="sec-title sec-title-project text-7xl font-bold fade-in-up text-left py-6
+      bg-gradient-to-b from-black via-blue-900  via-sky-800 to-blue-200
+      bg-clip-text text-transparent">
+Contact
+</h2>
+
+      <div class="mt-3 border-b border-gray-800 mb-10"></div>
+    </div>
     <form action="#" method="post">
       <dl>
         <dt><label for="name">NAME</label></dt>
@@ -178,20 +385,115 @@
     <p>&copy; 2025 My Work</p>
   </footer>
 
+
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.isotope/3.0.6/isotope.pkgd.min.js"></script>
+
 
 <script>
 
 
-//カーソル//
-const cursor = document.querySelector(".custom-cursor");
+  const marker = document.getElementById("timeline-marker");
+  const timeline = document.getElementById("timeline");
 
+  timeline.addEventListener("mousemove", (e) => {
+    const rect = timeline.getBoundingClientRect();
+
+    // マウスのY位置をタイムライン内に制限
+    let y = e.clientY - rect.top;
+    y = Math.max(0, Math.min(rect.height, y));
+
+    // 丸を上下に移動
+    marker.style.transform = `translateY(${y}px)`;
+  });
+</script>
+<script>
+  
+  // Intersection Observerでスクロール時アニメーション
+  const items = document.querySelectorAll('.fade-in-up');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+        }
+      });
+    }, { threshold: 0.2 });
+
+    items.forEach(item => observer.observe(item));
+
+
+
+
+document.addEventListener("DOMContentLoaded", () => {
+  const wrapper = document.querySelector(".gallery-wrapper");
+  const items = wrapper.querySelectorAll(".item");
+
+  // ====== STEP 1: 最初はランダム配置 ======
+  items.forEach((item, i) => {
+  const offsetX = (Math.random() - 0.5) * 160; // 横ランダム
+  const offsetY = (Math.random() - 0.5) * 160; // 縦ランダム（flowは崩さず演出のみ）
+  const rotate = (Math.random() - 0.5) * 8;    // -4〜+4度
+  // 位置(flow)は変えず transform のみで“散らかす”
+  item.style.transform = `translate(${offsetX}px, ${offsetY}px) rotate(${rotate}deg)`;
+  item.style.transition = "transform 1.8s cubic-bezier(.16,.84,.44,1)";
+  });
+
+  // ====== STEP 2: 数秒後にリセット（ふわっと整列） ======
+  setTimeout(() => {
+    items.forEach((item) => {
+      item.style.transform = "";  // デフォルト位置へ
+    });
+  // Isotope 再レイアウトを促すカスタムイベント
+  window.dispatchEvent(new Event('galleryReset'));
+  }, 5000); // ← 3秒後に開始（トランジション1.5秒かけて動く）
+});
+
+
+  
+document.addEventListener("DOMContentLoaded", () => {
+  const video = document.getElementById("bg-video");
+  const subVideo = document.getElementById("sub-bg-video");
+  const triggerEnd = window.innerHeight * 1.2;
+  
+
+  let targetOpacity = 1;
+  let currentOpacity = 1;
+  const easing = 0.08;
+
+  function easeInOutCubic(t) {
+    return t < 0.5
+      ? 4 * t * t * t
+      : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
+  function update() {
+    const scrollY = window.scrollY;
+    const rawProgress = Math.min(scrollY / triggerEnd, 1);
+    const easedProgress = easeInOutCubic(rawProgress);
+    const blur = (1 - currentOpacity) * 20;
+video.style.filter = `blur(${blur}px)`;
+
+    targetOpacity = 1 - easedProgress; // 1 → 0 に減少
+    currentOpacity += (targetOpacity - currentOpacity) * easing;
+
+    video.style.opacity = currentOpacity.toFixed(3);
+    if (subVideo) subVideo.style.opacity = currentOpacity.toFixed(3);
+
+    requestAnimationFrame(update);
+  }
+
+  update();
+});
+
+
+
+// ==================== カーソル制御 ====================
+const cursor = document.querySelector(".custom-cursor");
 let mouseX = 0;
 let mouseY = 0;
 let cursorX = 0;
 let cursorY = 0;
-const speed = 0.15; // 慣性速度
+const speed = 0.15;
 
 document.addEventListener("mousemove", (e) => {
   mouseX = e.clientX;
@@ -206,42 +508,42 @@ function animateCursor() {
 }
 animateCursor();
 
-// ホバー時の拡大
 document.querySelectorAll("a, button, .nav-btn").forEach((el) => {
   el.addEventListener("mouseenter", () => cursor.classList.add("hover"));
   el.addEventListener("mouseleave", () => cursor.classList.remove("hover"));
 });
 
-// クリック時の波紋
 document.addEventListener("mousedown", () => {
   cursor.classList.add("click");
   setTimeout(() => cursor.classList.remove("click"), 400);
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  // subvisualのフェード処理
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
-    const fadeStart = 0;
-    const fadeEnd = 300;
-    const subvisual = document.getElementById('subvisual');
+// ==================== DOMが読み込まれたら実行 ====================
+document.addEventListener("DOMContentLoaded", () => {
 
-    if (scrollY <= fadeStart) {
-      subvisual.style.opacity = 1;
-    } else if (scrollY >= fadeEnd) {
-      subvisual.style.opacity = 0;
-    } else {
-      subvisual.style.opacity = 1 - (scrollY - fadeStart) / (fadeEnd - fadeStart);
-    }
-  });
 
-  // Worksタイトルとポートフォリオに遅延クラス追加
+
+  // ========== 遅延表示 ==========
   const title = document.querySelector('.sec-title-works');
   const portfolio = document.querySelector('.portfolio');
   setTimeout(() => title?.classList.add('active'), 100);
   setTimeout(() => portfolio?.classList.add('active'), 600);
 
-  // IntersectionObserverによるボタン表示制御
+
+  // タイトルと経歴アイテムをまとめて監視
+const animatedItems = document.querySelectorAll('.fade-in-up');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('show');
+    }
+  });
+}, { threshold: 0.2 });
+
+animatedItems.forEach(item => observer.observe(item));
+
+  // ========== IntersectionObserverでボタン表示 ==========
   const worksSection = document.getElementById('works');
   const btnGroup = document.querySelector('.button-group');
   if (worksSection && btnGroup && 'IntersectionObserver' in window) {
@@ -253,49 +555,105 @@ document.addEventListener('DOMContentLoaded', () => {
           btnGroup.classList.remove('in-works');
         }
       });
-    }, { root: null, threshold: [0, 0.12, 0.5] });
+    }, { threshold: [0, 0.12, 0.5] });
     observer.observe(worksSection);
   } else {
     btnGroup?.classList.add('in-works');
   }
+  // タイトルのスクロールアニメーション（内側DOM Ready を統合）
+  const worksTitleEl = document.getElementById("works-title");
+  if (worksTitleEl) {
+    const titleObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          worksTitleEl.classList.remove("opacity-0", "-translate-x-20");
+          worksTitleEl.classList.add("opacity-100", "translate-x-0");
+        }
+      });
+    }, { threshold: 0.3 });
+    titleObserver.observe(worksTitleEl);
+  }
 
-  // ハンバーガーメニューの開閉処理
+  // IsotopeでPinterest風レイアウト初期化
+  const grid = document.querySelector('.gallery');
+  if (grid && window.Isotope) {
+    const iso = new Isotope(grid, {
+      itemSelector: '.item',
+      layoutMode: 'masonry',
+      percentPosition: true,
+      masonry: { columnWidth: '.item' }
+    });
+  // 散らかし演出終了後に再レイアウト
+  window.addEventListener('galleryReset', () => iso.layout());
+
+    // フィルターボタン設定
+    const buttons = document.querySelectorAll('.button-group .button');
+    buttons.forEach(btn => {
+      btn.addEventListener('click', function () {
+        buttons.forEach(b => b.classList.remove('active', 'bg-gray-900', 'text-white'));
+        this.classList.add('active', 'bg-gray-900', 'text-white');
+        const filterValue = this.getAttribute('data-filter');
+        iso.arrange({ filter: filterValue });
+      });
+    });
+  }
+  // ========== ハンバーガーメニュー ==========
+  document.addEventListener("scroll", () => {
+  const menuIcon = document.getElementById("menuToggle");
+  const worksSection = document.getElementById("works");
+
+  const scrollY = window.scrollY;
+  const triggerY = worksSection.offsetTop - 800;
+
+  if (scrollY > triggerY) {
+    menuIcon.classList.add("scrolled");
+  } else {
+    menuIcon.classList.remove("scrolled");
+  }
+});
   const menuToggle = document.getElementById('menuToggle');
   const menuOverlay = document.getElementById('menuOverlay');
 
-  // ハンバーガーメニュークリックで開閉
-  function navigateTo(id) {
-  const target = id === 'top' ? document.body : document.getElementById(id);
-  if (target) {
-    target.scrollIntoView({ behavior: 'smooth' });
-  }
-  menuOverlay.classList.remove('active');
-  document.body.classList.remove('menu-open');
-}
-// 外クリックで閉じる
-document.addEventListener('click', function (e) {
-  const isClickInsideMenu = menuOverlay.contains(e.target);
-  const isClickOnToggle = menuToggle.contains(e.target);
+  menuToggle?.addEventListener('click', () => {
+    menuOverlay.classList.toggle('active');
+    document.body.classList.toggle('menu-open');
+  });
 
-  if (!isClickInsideMenu && !isClickOnToggle) {
-    menuOverlay.classList.remove('active');
-  }
-});
+  document.addEventListener('click', (e) => {
+    const isClickInsideMenu = menuOverlay.contains(e.target);
+    const isClickOnToggle = menuToggle.contains(e.target);
+    if (!isClickInsideMenu && !isClickOnToggle) {
+      menuOverlay.classList.remove('active');
+      document.body.classList.remove('menu-open');
+    }
+  });
+  window.addEventListener('scroll', function () {
+    const menuIcon = document.getElementById('menuToggle');
+    const menuOverlay = document.getElementById('menuOverlay');
 
+    if (window.scrollY > 50) {
+      menuIcon.classList.add('scrolled');
+      menuOverlay.classList.add('scrolled');
+    } else {
+      menuIcon.classList.remove('scrolled');
+      menuOverlay.classList.remove('scrolled');
+    }
+  });
   // メニュー内スクロール関数
   window.navigateTo = function(sectionId) {
-    const target = document.getElementById(sectionId);
+    const target = sectionId === 'top' ? document.body : document.getElementById(sectionId);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth' });
     }
     menuOverlay.classList.remove("active");
+    document.body.classList.remove('menu-open');
   };
 
-  // サムネイル1枚だけ表示設定
+  // ========== サムネイル1枚制御 ==========
   const shownCategories = new Set();
   document.querySelectorAll(".item").forEach(item => {
     const category = Array.from(item.classList).find(c =>
-      ["grapefruit", "germany1", "germany2", "germany3", "germany4", "germany5"].includes(c)
+      ["grapefruit", "germany1", "germany2", "germany3", "germany4", "germany5", "ice","shadow1","aida","event1","event2","mataai","twofaces","gomi","garigari","club","cartoon","drawing"].includes(c)
     );
     if (!category) return;
     if (shownCategories.has(category)) {
@@ -306,40 +664,79 @@ document.addEventListener('click', function (e) {
     }
   });
 
-  const groupClass = getGroupClass(item);
-if (!groupClass) return;
-currentGroup = Array.from(document.querySelectorAll(`.item.${groupClass}`));
-currentIndex = currentGroup.indexOf(item);
+  // ========== ポップアップ処理 ==========
+  (() => {
+    const popup = document.getElementById("popup");
+    const popupImage = document.getElementById("popup-image");
+    const popupDescription = document.getElementById("popup-description");
+    const overlay = document.querySelector(".popup-overlay");
+    const prevBtn = document.getElementById("prev-button");
+    const nextBtn = document.getElementById("next-button");
 
-document.addEventListener('click', function (e) {
-  const isClickInsideMenu = menuOverlay.contains(e.target);
-  const isClickOnToggle = menuToggle.contains(e.target);
+    const BASE = new Set(["item", "photo", "video", "design", "other"]);
+    const GROUPS = new Set(
+      [...document.querySelectorAll(".gallery .item")]
+        .flatMap(el => [...el.classList])
+        .filter(c => !BASE.has(c))
+    );
 
-  if (!isClickInsideMenu && !isClickOnToggle) {
-    menuOverlay.classList.remove('active');
-  }
-});
+    function getGroupClass(el) {
+      return [...el.classList].find(c => GROUPS.has(c)) || null;
+    }
 
-dodocument.querySelectorAll(".overlay a").forEach(link => {
-  link.addEventListener("click", e => {
-    e.preventDefault();
-    const item = e.target.closest(".item");
-    if (!item) return;
+    let currentGroup = [];
+    let currentIndex = 0;
+    let isPopupVisible = false;
+    let scrollTimeout;
 
-    const groupClass = getGroupClass(item);
-    if (!groupClass) return;
+    function showPopup() {
+  const currentItem = currentGroup[currentIndex];
+  if (!currentItem) return;
 
-    currentGroup = Array.from(document.querySelectorAll(`.item.${groupClass}`));
-    currentIndex = currentGroup.indexOf(item);
-    showPopup();
-  });
-});
+  const img = currentItem.querySelector("img");
+  const description = currentItem.getAttribute("data-description") || "";
 
-    showPopup();
-  });
+  popupImage.src = img ? img.src : "";
+  popupDescription.textContent = description;
 
-// IntersectionObserverでサムネイルが画面に入ったらクラス追加
-document.addEventListener('DOMContentLoaded', () => {
+  popup.classList.remove("hidden", "fade-out");
+  isPopupVisible = true;
+}
+
+    document.querySelectorAll(".overlay a").forEach(link => {
+      link.addEventListener("click", e => {
+        e.preventDefault();
+        const item = e.target.closest(".item");
+        if (!item) return;
+        const groupClass = getGroupClass(item);
+        if (!groupClass) return;
+        currentGroup = Array.from(document.querySelectorAll(`.item.${groupClass}`));
+        currentIndex = currentGroup.indexOf(item);
+        showPopup();
+      });
+    });
+
+    prevBtn?.addEventListener("click", () => {
+      if (!currentGroup.length) return;
+      currentIndex = (currentIndex - 1 + currentGroup.length) % currentGroup.length;
+      showPopup();
+    });
+
+    nextBtn?.addEventListener("click", () => {
+      if (!currentGroup.length) return;
+      currentIndex = (currentIndex + 1) % currentGroup.length;
+      showPopup();
+    });
+
+    overlay?.addEventListener("click", () => {
+      popup.classList.add("hidden");
+      isPopupVisible = false;
+    });
+
+
+  })();
+
+  // ========== IntersectionObserverで in-view クラス追加 ==========
   const items = document.querySelectorAll('.item');
   if ('IntersectionObserver' in window) {
     const observer = new IntersectionObserver((entries) => {
@@ -349,148 +746,14 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       });
     }, { threshold: 0.1 });
-
     items.forEach(item => observer.observe(item));
   } else {
-    // 旧ブラウザはすべて表示
     items.forEach(item => item.classList.add('in-view'));
   }
-});
-const gallery = document.querySelector('.gallery-wrapper');
-const items = gallery.querySelectorAll('.item');
 
-items.forEach(item => {
-  const x = Math.random() * (gallery.clientWidth - item.clientWidth);
-  const y = Math.random() * 800; // 高さの範囲
-  item.style.position = 'absolute';
-  item.style.left = `${x}px`;
-  item.style.top = `${y}px`;
-});
-
-gallery.style.position = 'relative';
-gallery.style.height = '1000px'; // ランダム配置用の高さを適当に
-
-
-
-
-
-
-
-
-
-
-
-
-  // ポップアップ処理（省略せず記述）
-  
-
-/* ==== Popup（同一グループのみ） ==== */
-(() => {
-  const popup = document.getElementById("popup");
-  const popupImage = document.getElementById("popup-image");
-  const popupDescription = document.getElementById("popup-description");
-  const overlay = document.querySelector(".popup-overlay");
-  const prevBtn = document.getElementById("prev-button");
-  const nextBtn = document.getElementById("next-button");
-
-  // ベースクラスを除いたものを「グループ」とみなす（自動検出）
-  const BASE = new Set(["item","photo","video","design","other"]);
-  const GROUPS = new Set(
-    [...document.querySelectorAll(".gallery .item")]
-      .flatMap(el => [...el.classList])
-      .filter(c => !BASE.has(c))
-  );
-
-  function getGroupClass(el){
-    return [...el.classList].find(c => GROUPS.has(c)) || null;
-  }
-
-  let currentGroup = [];
-  let currentIndex = 0;
-  let isPopupVisible = false;
-  let scrollTimeout;
-
-  function showPopup() {
-    const currentItem = currentGroup[currentIndex];
-    if (!currentItem) return;
-    const img = currentItem.querySelector("img");
-    popupImage.src = img ? img.src : "";
-    popupDescription.textContent = "";
-    popup.classList.remove("hidden","fade-out");
-    isPopupVisible = true;
-  }
-
-  menuToggle.addEventListener('click', () => {
-  menuOverlay.classList.toggle('active');
-  document.body.classList.toggle('menu-open');
+  // ========== jQuery（Isotope） ==========
+  // jQuery版の二重初期化は不要のため削除（上部で vanilla Isotope 済）
 });
 
 
-
-
-  // 「VIEW MORE」クリック → 同じグループだけを対象にする
-  document.querySelectorAll(".overlay a").forEach(link => {
-    link.addEventListener("click", e => {
-      e.preventDefault();
-      const item = e.target.closest(".item");
-      if (!item) return;
-
-      const groupClass = getGroupClass(item); // 例: "grapefruit" / "germany3"
-      if (!groupClass) return;
-
-      currentGroup = Array.from(document.querySelectorAll(`.item.${groupClass}`));
-      currentIndex = currentGroup.indexOf(item);
-      showPopup();
-    });
-  });
-
-  // 矢印ナビ（同一 currentGroup 内で循環）
-  prevBtn?.addEventListener("click", () => {
-    if (!currentGroup.length) return;
-    currentIndex = (currentIndex - 1 + currentGroup.length) % currentGroup.length;
-    showPopup();
-  });
-  nextBtn?.addEventListener("click", () => {
-    if (!currentGroup.length) return;
-    currentIndex = (currentIndex + 1) % currentGroup.length;
-    showPopup();
-  });
-
-  // 閉じる
-  overlay?.addEventListener("click", () => {
-    popup.classList.add("hidden");
-    isPopupVisible = false;
-  });
-
-  // スクロールで自然に閉じる
-  window.addEventListener("scroll", () => {
-    if (isPopupVisible && !popup.classList.contains("hidden") && !popup.classList.contains("fade-out")) {
-      popup.classList.add("fade-out");
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        popup.classList.add("hidden");
-        popup.classList.remove("fade-out");
-        isPopupVisible = false;
-      }, 500);
-    }
-  });
-})();
-
-
-// jQuery（Isotope）
-$(document).ready(function () {
-  var $gallery = $('.gallery').isotope({
-    itemSelector: '.item',
-    layoutMode: 'fitRows'
-  });
-
-  $('.button-group .button').on('click', function () {
-    $('.button-group .button').removeClass('active');
-    $(this).addClass('active');
-    var filterValue = $(this).attr('data-filter');
-    $gallery.isotope({ filter: filterValue });
-  });
-
-  
-});
 </script>
