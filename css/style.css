@@ -5,11 +5,15 @@ html {
   font-size: 100%;
 scroll-behavior: smooth;
 }
+
+
 body {
   margin: 0;
   padding: 0;
   color: #24292e;
-  font-family:"IBM Plex Sans", sans-serif;
+  font-family:"Funnel Sans", sans-serif;
+  font-weight: 400;
+  font-family: "Zen Maru Gothic",sans-serif;
   
 }
 
@@ -251,7 +255,7 @@ header {
 
 @media (max-width: 768px) {
   #subvisual {
-    top: 300px;
+    top: 400px;
     right: 20px;
     width: 50vw;
   }
@@ -270,7 +274,20 @@ header {
 #about p {
   text-align: justify;
 }
+@media screen and (max-width: 767px) {
+  #about {
+    padding: 20px 20px;   /* 上下40px 左右20px */
+  }
 
+  #about h3 {
+    font-size: 1rem; 
+    margin-bottom: 1px; /* 見出し小さめ */
+  }
+  #about p {
+    font-size: 0.85rem; /* 本文も少し小さめ */
+    line-height: 1.6;
+  }
+}
 /* Button */
 .button-group {
   display: flex;
@@ -321,13 +338,12 @@ header {
 
 
 .gallery {
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 30px;                  /* アイテム間の間隔 */
+  display: flex;
+  flex-wrap: wrap;
   justify-content: center;
-  animation: slideInLeft 4s ease forwards;
-  min-height: 800px; /* 仮に800pxを確保 */
-  position: relative;
+  gap: 30px; /* ← ここで余白がつくようになる */
 }
+
 .gallery-wrapper {
   display: flex;
   flex-wrap: wrap;
@@ -340,18 +356,21 @@ header {
   height: 100vh; /* 画面いっぱいに表示。必要ならpxでも可 */
   overflow: hidden;
 }
+
 .gallery .item {
-  width: 20%;  
-  height: auto;             /* お好みで調整 */
-  aspect-ratio: 5 / 3.5;      /* 表示エリアの比率を5:3に固定 */
+  flex: 0 1 calc(20% - 30px); /* 5列 - gapぶん調整 */
+  max-width: calc(20% - 30px);
+  aspect-ratio: 5 / 3.5;
   overflow: hidden;
   cursor: pointer;
-  margin: 0;
-  transform: rotate(calc(-3deg + 6deg * var(--i)));
-  position: absolute;
-  transition: all 0.8s ease;
+  position: relative;
 }
-
+@media screen and (max-width: 767px) {
+  .gallery .item {
+    flex: 0 1 calc(50% - 15px); /* 横2列（gapぶん調整） */
+    max-width: calc(50% - 15px);
+  }
+}
 .gallery .item img {
   width: 100%;
   height: 100%;
@@ -370,30 +389,43 @@ header {
   transition: 0.3s ease;
 }
 
+.item {
+  position: relative; /* overlayを絶対配置できるようにする */
+  overflow: hidden;
+}
+
 .item .overlay {
-  position: relative;
-  width: 100%;
-  height: 100%;
+  position: absolute;      /* relative → absolute */
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;           /* gridでもOKだけどflexの方がシンプル */
   justify-content: center;
   align-items: center;
-  display: grid;
-  padding: 15px;
-  overflow: hidden;
-  transition: 0.2s ease-in-out;
-  opacity: 0;
+  background: rgba(0,0,0,0.45); /* 半透明の黒背景 */
+  opacity: 0;              /* 初期は非表示 */
+  transition: opacity 0.3s ease;
 }
 
 .item:hover .overlay {
-  opacity: 1;
+  opacity: 1;              /* ホバー時に表示 */
 }
 
 .item .overlay a {
   display: inline-block;
   padding: 8px 14px;
   color: #fff;
-  border: 0.8px solid;
+  border: 0.8px solid #fff;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.item .overlay a {
+  display: inline-block;
+  padding: 8px 14px;
+  color: #fff;
+
   transition: all 0.2s ease;
   text-decoration: none;
 }
@@ -443,9 +475,25 @@ header {
 
 .popup-content {
   position: relative;
-  z-index: 10001;
-}
+  inset: 0;  /* 画面の1.5倍の高さ */
+  background: #fff;
+  padding: 0;
+  border-radius: 0;
+  box-shadow: none;
+  z-index: 1000;
+  overflow: auto;
 
+  display: flex;
+  flex-direction: column; /* 画像と説明文を縦に並べる */
+  justify-content: center; /* 縦方向中央 */
+  align-items: center;     /* 横方向中央（mx-autoなくてもOK） */
+  padding: 1rem;
+
+  width: 95vw;   /* 横幅を広げる */
+  height: 95vh;  /* 高さを広げる */
+  max-width: none;   /* 制限を解除 */
+  max-height: none; 
+}
 
 /* オーバーレイ */
 
@@ -453,15 +501,12 @@ header {
 /* コンテンツ部分 */
 
 
-.popup-content img {
-  max-width: 100%;
-  max-height: 80vh; /* 画面高さに収まるように */
-  object-fit: contain; /* 縦横比を保つ */
-  margin: 0 auto;      /* 中央寄せ */
-  display: block;
-  z-index: 2;
+#popup-image {
+  max-width: 80%;   /* 横幅も少し余白を作る */
+  max-height: 50vh; /* 高さを画面の半分に */
+  display: center;
+  margin: 10 auto;
 }
-
 /* 説明文 */
 #popup-description {
   margin-top: 12px;
@@ -470,6 +515,7 @@ header {
 }
 
 /* ボタン（画像内に矢印配置） */
+
 /* 矢印を画面中央に固定して画像の外に */
 .popup-nav {
   position: absolute;
@@ -508,9 +554,6 @@ header {
 }
 
 /* 閉じるボタンは非表示 */
-.popup-close {
-  display: none !important;
-}
 
 /* フェードアウト用クラス */
 .popup.fade-out {
@@ -533,22 +576,8 @@ header {
 }
 
 
-/* News */
-#news dl {
-  display: flex;
-  flex-wrap: wrap;
-  border-top: solid 1px #c8c8c8;
-  margin-bottom: 20px;
-}
-#news dt {
-  width: 20%;
-  border-bottom: solid 1px #c8c8c8;
-  padding: 15px;
-}
-#news dd {
-  width: 80%;
-  border-bottom: solid 1px #c8c8c8;
-  padding: 15px;
+.year{
+  font-size: 20px;
 }
 
 /* Contact */
@@ -599,17 +628,55 @@ header {
 /* Worksタイトル用 */
 .sec-title-works {    /* 大きめサイズ（例：56px） */
   text-align: left;       /* 左寄せ */
-  margin: 0 0 4rem 0;     /* 下に余白 */
+  margin: 0 0 1rem 0;     /* 下に余白 */
   opacity: 0;             /* 初期は透明 */
   animation: slideInLeft 3s ease forwards;
 }
 
 .sec-title-project {    /* 大きめサイズ（例：56px） */
   text-align: left;       /* 左寄せ */
-  margin: 0 0 4rem 0;    /* 下に余白 */
+  margin: 0 0 1rem 0;    /* 下に余白 */
   opacity: 0;             /* 初期は透明 */
   animation: slideInLeft 3s ease forwards;
 }
+.sec-title-about{
+  text-align: left;       /* 左寄せ */
+  margin: 0 0 1rem 0;    /* 下に余白 */
+  opacity: 0;             /* 初期は透明 */
+  animation: slideInLeft 3s ease forwards;
+}
+.sec-title-contact{
+  text-align: left;       /* 左寄せ */
+  margin: 0 0 1rem 0;    /* 下に余白 */
+  opacity: 0;             /* 初期は透明 */
+  animation: slideInLeft 3s ease forwards;
+}
+
+@media screen and (max-width: 767px) {
+  h2.sec-title-works {
+    font-size: 60px !important;
+    margin: 0px 0px;
+  }
+
+  h2.sec-title-project  {
+    font-size: 60px !important;
+    margin: 0px 0px;
+  }
+  h2.sec-title-about {
+    font-size: 60px !important;
+    margin: 0px 0px;
+  
+  }
+
+  h2.sec-title-contact {
+    font-size: 60px !important;
+    margin: 0px 0px;
+  }
+
+}
+
+
+
 .fade-in-up {
   opacity: 0;
   transform: translateY(40px) scale(0.95);
