@@ -280,3 +280,48 @@
     margin: 4px 0px;
   }
 }
+
+
+<p class="text-lg leading-relaxed mb-4">
+          高校時代に1950〜90年代前半に制作された東欧を中心とした各国の映画ポスターに魅了され、グラフィックデザインへの関心を深めました。
+          <br>
+          その興味をきっかけに、デザイン学部に進学。大学では現代美術や映像表現にも関心を広げ、学部2年次にはドイツへ交換留学。
+          <br>
+          現地では趣味で続けていたサウンドプログラミングを軸に、映像制作を行いました。
+          <br>
+          帰国後は、アートギャラリーでのインターンや英語を用いた接客業などを経験。現在は、興味の幅をさらに広げながら、Web制作にも取り組んでおり、
+          約半年前からHTML/CSSの学習を開始し、Tailwind CSSやFigmaなども活用しています。
+          <br>
+          好奇心旺盛で「まずはやってみる」姿勢を大切にしながら、ジャンルやメディアを横断して制作を続けています。趣味は映画鑑賞、読書、ギター、散歩など多趣味で、多様な視点を取り入れた柔軟な表現を目指しています。
+        </p>
+
+
+  <span class="year">2023年6月</span>
+      <p class="text-lg md:text-xl font-medium mb-3">「何者展」グループ展（MEDIA SHOP/京都）</p>
+    </div>
+        <span class="year">2023年8月</span>
+        <p class="text-lg md:text-xl font-medium mb-3">「平和のかけらたち〜peace nine 2023~」グループ展（ガルリ・ラペ/名古屋）</p>
+      </div>
+  
+        <span class="year">2023年8月</span>
+        <p class="text-lg md:text-xl font-medium mb-3">「学内展示」個展 （ドラフトギャラリー/京都）</p>
+      </div>
+
+      <span class="year">2023年9月</span>
+      <p class="text-lg md:text-xl font-medium mb-3">「点と線展」グループ展（万華鏡ギャラリー/京都）</p>
+
+      <span class="year">2023年9月</span>
+      <p class="text-lg md:text-xl font-medium mb-3">ライブペイント（club kumano/京都大学熊野寮）</p>
+
+      <span class="year">2024年6月</span>
+      <p class="text-lg md:text-xl font-medium mb-3">「La Pause」イベント企画（monade contemporary｜単子現代/京都）</p>
+
+      <span class="year">2025年2月</span>
+      <p class="text-lg md:text-xl font-medium mb-3">「Last Preview Of First Room Tour Volume One」グループ展（主催者の祖母の家/大阪）</p>
+
+      <span class="year">2025年2月</span>
+      <p class="text-lg md:text-xl font-medium mb-3" >「間をめぐって」イベント企画（monade contemporary｜単子現代/京都）</p>
+
+    </div>
+    </div>
+  </section>

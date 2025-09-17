@@ -194,13 +194,7 @@ header {
   inset: 0;
   z-index: 10;
 }
-#bg-video,
-#subvisual video {
-  transition: none;
-  opacity: 1;
-  position: relative;
-  z-index: 0;
-}
+
 
 /* Main Visual */
 #mainvisual {
@@ -219,7 +213,7 @@ header {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -1;
+
 }
 @keyframes floaty {
   0%, 100% { transform: translateY(0) translateX(0); }
@@ -227,31 +221,15 @@ header {
 }
 
 
-#subvisual {
-  position: fixed;
-  top: 550px;   /* 上からの位置 */
-  right: 280px; /* 右からの位置 */
-  width: 300px; /* サブビジュアルの幅（お好みで調整） */
-}
-
-#subvisual video {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-}
 #mainvisual {
   position: relative;
   height: 100vh;
   overflow: hidden;
 }
 
-#bg-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 
-}
+
+
 
 @media (max-width: 768px) {
   #subvisual {
