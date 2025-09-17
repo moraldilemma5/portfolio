@@ -199,6 +199,9 @@
   .pointer-events-none {
     pointer-events: none;
   }
+  .visible {
+    visibility: visible;
+  }
   .absolute {
     position: absolute;
   }
@@ -220,8 +223,14 @@
   .top-15 {
     top: calc(var(--spacing) * 15);
   }
+  .right-0 {
+    right: calc(var(--spacing) * 0);
+  }
   .right-40 {
     right: calc(var(--spacing) * 40);
+  }
+  .bottom-0 {
+    bottom: calc(var(--spacing) * 0);
   }
   .-left-\[16px\] {
     left: calc(16px * -1);
@@ -241,9 +250,6 @@
   .m-3 {
     margin: calc(var(--spacing) * 3);
   }
-  .m-9 {
-    margin: calc(var(--spacing) * 9);
-  }
   .mx-auto {
     margin-inline: auto;
   }
@@ -252,9 +258,6 @@
   }
   .mt-3 {
     margin-top: calc(var(--spacing) * 3);
-  }
-  .mt-4 {
-    margin-top: calc(var(--spacing) * 4);
   }
   .mt-10 {
     margin-top: calc(var(--spacing) * 10);
@@ -286,17 +289,14 @@
   .flex {
     display: flex;
   }
-  .grid {
-    display: grid;
-  }
   .hidden {
     display: none;
   }
   .h-7 {
     height: calc(var(--spacing) * 7);
   }
-  .h-\[800px\] {
-    height: 800px;
+  .h-auto {
+    height: auto;
   }
   .h-screen {
     height: 100vh;
@@ -307,11 +307,14 @@
   .max-h-\[90vh\] {
     max-height: 90vh;
   }
+  .min-h-\[200dvh\] {
+    min-height: 200dvh;
+  }
   .w-7 {
     width: calc(var(--spacing) * 7);
   }
-  .w-9 {
-    width: calc(var(--spacing) * 9);
+  .w-64 {
+    width: calc(var(--spacing) * 64);
   }
   .w-full {
     width: 100%;
@@ -371,9 +374,6 @@
   .overflow-hidden {
     overflow: hidden;
   }
-  .rounded {
-    border-radius: 0.25rem;
-  }
   .rounded-full {
     border-radius: calc(infinity * 1px);
   }
@@ -398,9 +398,6 @@
   }
   .border-sky-600 {
     border-color: var(--color-sky-600);
-  }
-  .bg-black {
-    background-color: var(--color-black);
   }
   .bg-gray-900 {
     background-color: var(--color-gray-900);
@@ -439,9 +436,6 @@
   .bg-clip-text {
     background-clip: text;
   }
-  .object-cover {
-    object-fit: cover;
-  }
   .p-1 {
     padding: calc(var(--spacing) * 1);
   }
@@ -463,8 +457,11 @@
   .py-6 {
     padding-block: calc(var(--spacing) * 6);
   }
-  .py-12 {
-    padding-block: calc(var(--spacing) * 12);
+  .py-40 {
+    padding-block: calc(var(--spacing) * 40);
+  }
+  .pb-40 {
+    padding-bottom: calc(var(--spacing) * 40);
   }
   .pl-8 {
     padding-left: calc(var(--spacing) * 8);
@@ -610,18 +607,21 @@
       }
     }
   }
-  .hover\:bg-gray-800 {
-    &:hover {
-      @media (hover: hover) {
-        background-color: var(--color-gray-800);
-      }
-    }
-  }
   .hover\:underline {
     &:hover {
       @media (hover: hover) {
         text-decoration-line: underline;
       }
+    }
+  }
+  .sm\:min-h-\[1000px\] {
+    @media (width >= 40rem) {
+      min-height: 1000px;
+    }
+  }
+  .md\:min-h-\[1200px\] {
+    @media (width >= 48rem) {
+      min-height: 1200px;
     }
   }
   .md\:w-1\/3 {
@@ -643,6 +643,16 @@
     @media (width >= 48rem) {
       font-size: var(--text-xl);
       line-height: var(--tw-leading, var(--text-xl--line-height));
+    }
+  }
+  .lg\:min-h-\[800px\] {
+    @media (width >= 64rem) {
+      min-height: 800px;
+    }
+  }
+  .lg\:pb-60 {
+    @media (width >= 64rem) {
+      padding-bottom: calc(var(--spacing) * 60);
     }
   }
 }
@@ -815,12 +825,6 @@ header {
   inset: 0;
   z-index: 10;
 }
-#bg-video, #subvisual video {
-  transition: none;
-  opacity: 1;
-  position: relative;
-  z-index: 0;
-}
 #mainvisual {
   position: relative;
   top: 0;
@@ -836,7 +840,6 @@ header {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  z-index: -1;
 }
 @keyframes floaty {
   0%, 100% {
@@ -846,27 +849,10 @@ header {
     transform: translateY(-20px) translateX(10px);
   }
 }
-#subvisual {
-  position: fixed;
-  top: 550px;
-  right: 280px;
-  width: 300px;
-}
-#subvisual video {
-  width: 100%;
-  height: auto;
-  display: block;
-  object-fit: cover;
-}
 #mainvisual {
   position: relative;
   height: 100vh;
   overflow: hidden;
-}
-#bg-video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
 }
 @media (max-width: 768px) {
   #subvisual {
