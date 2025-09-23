@@ -135,11 +135,11 @@
         </div>
           <!-- Photo Germany2 -->
         <div class="thumbnail-group germany2">
-          <div class="item photo germany2" data-description="電車の車窓から外をぼーっと眺めるのが好きです。ドイツの冬は青かったです。"><img src="img/images/deutsch/IMG_2556.jpg" loading="lazy" decoding="async"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
-          <div class="item photo germany2" data-description="電車の車窓から外をぼーっと眺めるのが好きです。ドイツの冬は青かったです。"><img src="img/images/deutsch/IMG_2558.jpg" loading="lazy" decoding="async"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
-          <div class="item photo germany2" data-description="電車の車窓から外をぼーっと眺めるのが好きです。ドイツの冬は青かったです。"><img src="img/images/deutsch/連続してる木.jpg" loading="lazy" decoding="async"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
-          <div class="item photo germany2" data-description="電車の車窓から外をぼーっと眺めるのが好きです。ドイツの冬は青かったです。"><img src="img/images/deutsch/IMG_2537.jpg" loading="lazy" decoding="async"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
-          <div class="item photo germany2" data-description="電車の車窓から外をぼーっと眺めるのが好きです。ドイツの冬は青かったです。"><img src="img/images/deutsch/IMG_2521.jpg" loading="lazy" decoding="async"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany2" ><img src="img/images/deutsch/IMG_2556.jpg" loading="lazy" decoding="async"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany2" ><img src="img/images/deutsch/IMG_2558.jpg" loading="lazy" decoding="async"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany2" ><img src="img/images/deutsch/連続してる木.jpg" loading="lazy" decoding="async"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany2" ><img src="img/images/deutsch/IMG_2537.jpg" loading="lazy" decoding="async"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item photo germany2" ><img src="img/images/deutsch/IMG_2521.jpg" loading="lazy" decoding="async"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
         </div>
           <!-- Photo Germany3 -->
           <div class="thumbnail-group germany3">
@@ -159,7 +159,6 @@
           <div class="thumbnail-group germany5">
           <div class="item photo germany5"><img src="img/images/deutsch/IMG_0355.JPG" loading="lazy" decoding="async"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <div class="item photo germany5"><img src="img/images/deutsch/IMG_0344.jpg" loading="lazy" decoding="async"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
-          <div class="item photo germany5"><img src="img/images/deutsch/IMG_0093.jpg" loading="lazy" decoding="async"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <div class="item photo germany5"><img src="img/images/deutsch/IMG_0086.JPG" loading="lazy" decoding="async"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <div class="item photo germany5"><img src="img/images/deutsch/IMG_0070.jpg" loading="lazy" decoding="async"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <div class="item photo germany5"><img src="img/images/deutsch/鳩.jpg" loading="lazy" decoding="async"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
@@ -195,10 +194,10 @@
 
         <!-- Video -->
         <div class="thumbnail-group video1">
-          <div class="item video video1" data-description="「何者展」グループ展（MEDIA SHOP/京都）出展作品。[mirror/2023/1:38/映像]"><img src="img/スクリーンショット 2025-09-10 13.19.11.jpg" loading="lazy" decoding="async"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item video video1" data-description="卒業制作用映像（仮）。[卒制/2025/未定/映像]" data-videosrc="https://youtu.be/ue7Q7DVVyhE"><img src="img/スクリーンショット 2025-09-23 11.17.18.png" loading="lazy" decoding="async"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
           <!-- Video -->
         <div class="thumbnail-group video2">
-          <div class="item video video2"data-description="ドイツにいた時に制作した映像。[algos/2024/6:01/映像]"><img src="img/スクリーンショット 2025-09-10 13.22.34.jpg" loading="lazy" decoding="async"><div class="overlay"><a href="#">VIEW MORE</a></div></div>
+          <div class="item video video2"data-description="ドイツにいた時に制作した映像。[algos/2024/6:01/映像]" data-videosrc="https://youtu.be/OxZnektBQzw"><img src="img/スクリーンショット 2025-09-10 13.22.34.jpg" loading="lazy" decoding="async" ><div class="overlay"><a href="#">VIEW MORE</a></div></div>
     
   <!-- Design Grapefruit -->
   <div class="thumbnail-group grapefruit">
@@ -541,6 +540,28 @@ Contact
     }, { rootMargin: '200px' });
     obs.observe(gallery);
   }
+  /* ----------Youtube 動画 ---------- */
+  document.querySelectorAll('.item.video1,.item.video2').forEach(item => {
+    const videoUrl = item.dataset.videosrc;
+
+    item.addEventListener('click', function () {
+      if (videoUrl) {
+        window.open(videoUrl, '_blank');
+      }
+    });
+
+    // prevent link default action to avoid "#" behavior
+    const overlayLink = item.querySelector('.overlay a');
+    if (overlayLink) {
+      overlayLink.addEventListener('click', function (e) {
+        e.preventDefault();
+        if (videoUrl) {
+          window.open(videoUrl, '_blank');
+        }
+      });
+    }
+  });
+
 
   /* ---------- ポップアップ処理（単一化・軽量化） ---------- */
   function initPopup() {
