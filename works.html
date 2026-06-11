@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PORTFOLIO</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="style.css" rel="stylesheet"/>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+    <body class="bg-black text-white">
+
+  <!-- ハンバーガーボタン -->
+  <button id="menuToggle" aria-label="メニュー" class="fixed top-4 right-5 z-50 w-12 h-12 sm:w-16 sm:h-16 flex items-center justify-center bg-black/60 backdrop-blur">
+    <span class="hamburger"><span></span><span></span><span></span></span>
+  </button>
+
+  <!-- 背景（クリックで閉じる） -->
+  <div id="menuBackdrop" class="fixed inset-0 z-30 bg-black/40 opacity-0 pointer-events-none transition-opacity duration-300"></div>
+
+  <!-- 右からスライドするメニュードロワー -->
+  <nav id="menuOverlay" class="fixed top-0 right-0 z-40 h-full w-72 sm:w-80 bg-black/95 backdrop-blur text-white flex flex-col items-start justify-center gap-8 px-12 translate-x-full transition-transform duration-300 ease-out">
+    <a href="index.html" class="text-2xl sm:text-3xl tracking-[0.25em] hover:opacity-60 transition">TOP</a>
+
+    <div class="flex flex-col items-start">
+      <button id="worksToggle" class="text-2xl sm:text-3xl tracking-[0.25em] hover:opacity-60 transition flex items-center gap-3">
+        WORKS
+        <span class="tree-caret text-base">▸</span>
+      </button>
+      <div class="submenu flex flex-col items-start gap-3 pl-4 text-sm sm:text-base tracking-[0.2em] text-gray-400">
+        <a href="works.html?filter=photo" data-filter-link="photo" class="hover:text-white transition">PHOTO</a>
+        <a href="works.html?filter=video" data-filter-link="video" class="hover:text-white transition">VIDEO</a>
+        <a href="works.html?filter=design" data-filter-link="design" class="hover:text-white transition">DESIGN</a>
+        <a href="works.html?filter=web" data-filter-link="web" class="hover:text-white transition">WEB</a>
+      </div>
+    </div>
+
+    <a href="about.html" class="text-2xl sm:text-3xl tracking-[0.25em] hover:opacity-60 transition">ABOUT</a>
+  </nav>
+
+        <div class="
+        hidden
+        fixed
+        top-4 left-1/2 -translate-x-1/2   /* ←スマホ：上中央 */
+        sm:top-1/2 sm:right-10 sm:left-auto sm:-translate-x-0 sm:-translate-y-1/2  /* ←PC：右中央 */
+        
+        flex gap-4 sm:flex-col sm:gap-6   /* ←スマホ横並び / PC縦並び */
+        
+        bg-black/60 sm:bg-transparent backdrop-blur
+        px-4 py-2 sm:p-0
+        
+        text-white tracking-widest text-sm sm:text-base text-center sm:text-right
+    
+        ">
+            
+  
+            <a href="index.html" class="filter-btn">TOP</a>
+
+            <a href="#" class="filter-btn" data-filter="photo">PHOTO</a>
+            <a href="#" class="filter-btn" data-filter="video">VIDEO</a>
+            <a href="#" class="filter-btn" data-filter="design">DESIGN</a>
+            <a href="#" class="filter-btn" data-filter="web">WEB</a>
+          
+          </div>
+        <!-- 作品 -->
+        <div class="max-w-3xl mx-auto grid grid-cols-3 gap-4 py-8 mt-16 sm:mt-0">
+      
+          <!-- PHOTO -->
+          <div class="work-item" data-category="photo" >
+            <img src="./写真/ドイツ/IMG_0070.jpg" class="w-full aspect-square object-cover" />
+          </div>
+          <div class="work-item" data-category="photo">
+            <img src="./写真/ドイツ/IMG_0086.JPG" class="w-full aspect-square object-cover" />
+          </div>
+          <div class="work-item" data-category="photo">
+            <img src="./写真/ドイツ/IMG_0344.jpg" class="w-full aspect-square object-cover" />
+          </div>
+          <div class="work-item" data-category="photo">
+            <img src="./self_project/IMG_1530.jpg" class="w-full aspect-square object-cover" />
+          </div>
+          <div class="work-item" data-category="photo">
+            <img src="./写真/ドイツ/IMG_1526.jpg" class="w-full aspect-square object-cover" />
+          </div>
+
+       
+          <div class="work-item" data-category="photo">
+            <img src="./写真/ドイツ/IMG_0093.jpg" class="w-full aspect-square object-cover" />
+          </div>
+
+          <div class="work-item" data-category="photo">
+            <img src="./写真/ドイツ/IMG_2521.jpg" class="w-full aspect-square object-cover" />
+          </div>
+          <div class="work-item" data-category="photo">
+            <img src="./写真/ドイツ/IMG_0355.JPG" class="w-full aspect-square object-cover"/>
+          </div>
+    
+
+          <div class="work-item" data-category="photo">
+            <img src="./写真/ドイツ/P1066648.jpg" class="w-full aspect-square object-cover"/>
+          </div>
+          <div class="work-item" data-category="photo">
+            <img src="./写真/ドイツ/P1066636.jpg" class="w-full aspect-square object-cover"/>
+          </div>
+          <div class="work-item" data-category="photo">
+            <img src="./写真/ドイツ/P1066650.jpg" class="w-full aspect-square object-cover"/>
+          </div>
+          <div class="work-item" data-category="photo">
+            <img src="./写真/ドイツ/ice1.jpg" class="w-full aspect-square object-cover" />
+          </div>
+          <div class="work-item" data-category="photo">
+            <img src="./写真/ドイツ/ice2.jpg" class="w-full aspect-square object-cover"/>
+          </div>
+          <div class="work-item" data-category="photo">
+            <img src="./写真/グレープフルーツ/9693DE9A-6ED2-4966-BFB4-B98B0A41A2F8 2.jpg" class="w-full aspect-square object-cover"/>
+          </div>
+          
+          <div class="work-item" data-category="photo">
+            <img src="./self_project/P1010911.JPG" class="w-full aspect-square object-cover" />
+          </div>
+   
+          <div class="work-item" data-category="photo">
+            <img src="./self_project/IMG_2581.jpg" class="w-full aspect-square object-cover"/>
+          </div>
+          <div class="work-item" data-category="photo">
+            <img src="./self_project/P1011230 3.jpg"class="w-full aspect-square object-cover" />
+          </div>
+          <div class="work-item" data-category="photo">
+            <img src="./self_project/P1011232 2.JPG" class="w-full aspect-square object-cover"/>
+          </div>
+
+          <div
+            class="work-item"
+            data-category="video"
+            data-caption="ドイツ滞在中に制作した映像。音楽はPure Dataで組んだシンセサイザーで制作"
+            data-link="https://youtu.be/OxZnektBQzw"
+          >
+              <img 
+                data-src="./video/youtube_サムネ.png"
+                class="w-full aspect-video object-cover"
+              />
+          </div>
+
+          <div
+          class="work-item"
+          data-category="video"
+          data-caption="卒業制作改訂版"
+          data-link="https://youtu.be/RDqToY_LuhE"
+        >
+            <img 
+              data-src="video/newvideo.png"
+              class="w-full aspect-video object-cover framed-thumb"
+            />
+        </div>
+
+<div
+  class="work-item"
+  data-category="video"
+  data-caption="GEN TAKAHASHI監督による映画『無こその存在 あるいは鮎子の人生』プレミア上映記録＋特別映像の編集"
+  data-link="https://youtu.be/5Ve2rHyPzLA"
+>
+              <img 
+                data-src="./video/スクリーンショット 2026-04-08 14.22.59.png"
+                class="w-full aspect-video object-cover framed-thumb"
+              />
+          </div>
+          <!-- DESIGN -->
+<div class="col-span-3 mt-12 px-2 sm:px-0" data-category="design">
+
+
+    <h2 class="text-white text-lg tracking-widest mb-4 border-b border-white/30 pb-2">
+      GRAPHIC DESIGN
+    </h2>
+  
+
+    <div class="grid grid-cols-3 gap-4">
+      <div class="work-item"  data-category="design" data-caption="BlackBoxKyoto オープニングプログラム『吉開菜央アーカイヴス ほったまるびより』のフライヤーデザインを担当（クリックで裏面を表示）">
+        <img
+          data-src="./実績/IMG_1583.JPG"
+          data-front-src="./実績/IMG_1583.JPG"
+          data-back-src="./実績/IMG_1582.JPG"
+          class="w-[80%]"
+        />
+      </div>
+      <div class="work-item"  data-category="design" data-caption="映画『無こその存在 あるいは鮎子の人生』チラシのデザインを担当（クリックで裏面を表示）">
+        <img
+          data-src="./実績/ayuko_b5-01.png"
+          data-front-src="./実績/ayuko_b5-01.png"
+          data-back-src="./実績/ayuko_b5-02.png"
+          class="w-[80%]"
+        />
+      </div>
+      <div class="work-item"  data-category="design" data-caption="映画『無こその存在 あるいは鮎子の人生』パンフレットのデザインを担当（全20P）">
+        <img
+          data-src="./実績/ayukoパンフレット2.jpg"
+          data-front-src="./実績/ayukoパンフレット2.jpg"
+          data-back-src="./実績/ayukoパンフレット1.jpg"
+          class="w-[80%]"
+        />
+      </div>
+      <div class="work-item"  data-category="design" data-caption="過ぐ SUGU（ins:sugu_kyoto）で行われたイベントのフライヤーデザインおよび写真撮影を担当">
+        <img data-src="./実績/sugu.jpeg" class="w-[80%]" />
+      </div>
+      <div class="work-item"  data-category="design" data-caption="東京コピーライターズクラブ（TCC）で行われる映画『無こその存在 あるいは鮎子の人生』試写会の案内状のデザインを担当">
+        <img data-src="./実績/jyoueikai_ayuko.png" class="w-[80%]" />
+      </div>
+      <div class="work-item"  data-category="design" data-caption="オムロピクチャーズ株式会社創立記念イベント「あがた森魚ライヴ」のデザインを担当">
+        <img data-src="./実績/創立記念イベント.png" class="w-[80%]" />
+      </div>
+      <div class="work-item"  data-category="design" data-caption="映画『無こその存在 あるいは鮎子の人生』配布画像のデザインを担当">
+        <img data-src="./実績/ayuko_待ち受け.png" class="w-[55%]" />
+      </div>
+      <div class="work-item"  data-category="design" data-caption="映画『無こその存在 あるいは鮎子の人生』配布画像のデザインを担当">
+        <img data-src="./実績/鮎子待ち受けデザイン案2.jpg" class="w-[55%]" />
+      </div>
+      <div class="work-item"  data-category="design" data-caption="映画『無こその存在 あるいは鮎子の人生』配布画像のデザインを担当">
+        <img data-src="./実績/鮎子待ち受けデザイン案3.jpg" class="w-[55%]" />
+      </div>
+      
+    </div>
+
+
+    <div class="border-t border-white/20 my-10"></div>
+    <h2 class="text-white text-lg tracking-widest mb-4 border-b border-white/30 pb-2">
+       ILLUSTRATION
+      </h2>
+    
+  
+      <div class="grid grid-cols-3 gap-4">
+    
+    
+        <div class="work-item" data-category="design" data-caption="授業の課題で制作したキャラクターデザイン">
+          <img data-src="./イラスト/120_20210409173419.jpg" class="w-[80%]"/>
+        </div>
+        
+        <div class="work-item" data-category="design" data-caption="ツール練習用に制作したキャラクターデザイン">
+            <img data-src="./イラスト/うし.jpg" class="w-[80%]" />
+          </div>
+          <div class="work-item" data-category="design" data-caption="授業の課題で制作した異邦人の表紙デザイン　パステル/1303mm×1620mm">
+            <img data-src="./実績/異邦人.jpg" class="w-[80%]" />
+          </div>
+      
+          <div class="work-item"  data-category="design" data-caption="撮影した写真と描いたイラストを組み合わせて制作">
+            <img data-src="./イラスト/ブランディング　作品集-21.jpg" class="w-[80%]" />
+          </div>
+
+     
+  </div>
+
+    <div class="border-t border-white/20 my-10"></div>
+  
+    <h2 class="text-white text-lg tracking-widest mb-4 border-b border-white/30 pb-2">
+      PROJECT
+    </h2>
+  
+    <div class="grid grid-cols-3 gap-4">
+      <div class="work-item"  data-category="design" data-caption="monade contemporary | 単子現代（ins:monadecontemporary）で自主企画・開催したイベントのフライヤーデザイン担当">
+        <img data-src="./実績/PROJECT/IMG_9877.WEBP" class="w-[80%]" />
+      </div>
+
+      <div class="work-item"  data-category="design" data-caption="美術史家の岡田温司氏とヴィデオアーティストの河合政之氏による対談イベントのチラシデザインを担当">
+        <img
+          data-src="./実績/PROJECT/IMG_9878.WEBP"
+          data-front-src="./実績/PROJECT/IMG_9878.WEBP"
+          data-back-src="./実績/PROJECT/IMG_9879.WEBP"
+          
+          class="w-[80%]"
+        />
+      </div>
+ 
+    </div>
+  
+
+    <div class="border-t border-white/20 my-10"></div>
+  
+
+    <h2 class="text-white text-lg tracking-widest mb-4 border-b border-white/30 pb-2">
+      OTHER
+    </h2>
+  
+    <div class="grid grid-cols-3 gap-4">
+      <div class="work-item"  data-category="design" data-caption="映画『また逢いましょう』のロケーションマップデザインを担当（パンフレット・「右京じかん」掲載）">
+        <img data-src="./実績/ロケマップ.png" class="w-[80%]" />
+      </div>
+
+      <div class="work-item"  data-category="design" data-caption="映画『また逢いましょう』SNS用プロモーションビジュアルのデザインを担当">
+        <img data-src="./実績/また逢いサムネイル.jpg" class="w-[80%]" />
+      </div>
+   
+    <div class="work-item"  data-category="design" data-caption="有限会社オムロ 年賀状のデザインを担当">
+        <img data-src="./実績/omuro_nenngajyou.png" class="w-[80%]" />
+      </div>
+
+      
+      <div class="work-item"  data-category="design" data-caption="在学中に制作したZINE">
+        <img data-src="./self_project/本3.jpg" class="w-[80%]" />
+      </div>
+
+      <div class="work-item"  data-category="design" data-caption="依頼を受けて制作した名刺デザイン">
+        <img
+          data-src="./実績/lyn_meishi-01.jpg"
+          data-front-src="./実績/lyn_meishi-01.jpg"
+          data-back-src="./実績/lyn_meishi-02.jpg"
+          
+          class="w-[80%]"
+        />
+      </div>
+      <div class="work-item"  data-category="design"data-caption="社内用名刺のデザイン制作">
+        <img
+          data-src="./実績/aoi_meishi-01.jpg"
+          data-front-src="./実績/aoi_meishi-01.jpg"
+          data-back-src="./実績/aoi_meishi-02.jpg"
+          
+          class="w-[80%]"
+        />
+      </div>
+
+    </div>
+
+    <p class="mt-12 pt-6 border-t border-white/15 text-xs sm:text-sm text-gray-500 leading-relaxed">
+      ポートフォリオに掲載している制作物のうち、一部はオムロピクチャーズ株式会社、有限会社オムロに権利があります。掲載の許可はいただいております。
+    </p>
+
+  </div>
+
+          <div
+            class="work-item"
+            data-category="web"
+            data-link="https://futata-villa.com/miyakojima_monogatari3/"
+            data-caption="映画『宮古島物語 ふたたヴィラ かんかかりゃの願い』公式サイトを制作"
+          >
+            <img
+              data-src="web/miyakojima_web.jpg"
+              class="w-full aspect-video object-cover"
+            />
+          </div>
+
+          <div class="work-item" data-category="web" data-caption="映画『無こその存在 あるいは鮎子の人生』webサイトを制作。こちらのサイトは現在公開しておりません。">
+            <img
+              data-src="web/ayuko_web.jpg"
+              class="w-full aspect-video object-cover"
+            />
+          </div>
+
+          <div
+            class="work-item"
+            data-category="web"
+            data-link="https://omuropictures.jp/"
+            data-caption="オムロピクチャーズ株式会社公式サイトを制作"
+          >
+            <img
+              data-src="web/omuro_web.jpg"
+              class="w-full aspect-video object-cover"
+            />
+          </div>
+
+          <div class="work-item" data-category="web" data-caption="自主企画イベント『間をめぐって』公式サイトを制作。こちらのサイトは現在公開しておりません。">
+            <img
+              data-src="web/aida_web.jpg"
+              class="w-full aspect-video object-cover"
+            />
+          </div>
+
+          <div class="work-item" data-category="web" data-caption="映画『ひとつの空』のイベントサイトを制作。こちらのサイトは現在公開しておりません。">
+            <img
+              data-src="web/hitotsunosora_web.jpg"
+              class="w-full aspect-video object-cover"
+            />
+          </div>
+
+            <div class="work-item" data-category="web" data-caption="映画『ひちりん』公式サイトを制作。こちらのサイトは現在公開しておりません。">
+            <img
+              data-src="web/hichirinn_web.jpg"
+              class="w-full aspect-video object-cover"
+            />
+          </div>
+        </div>
+
+
+        <div id="modal" class="fixed inset-0 bg-black/90 hidden items-center justify-center z-50">
+  
+       
+            <button id="closeModal" class="absolute top-20 right-20 text-white text-5xl">
+              
+            </button>
+          
+
+            <div id="modalContent" class="inline-block max-w-4xl px-4 text-center">
+              <img id="modalImg" class="max-w-full max-h-[80vh] object-contain mx-auto" />
+              <video id="modalVideo"
+  class="hidden max-w-full max-h-[80vh] object-contain mx-auto"
+  controls
+></video>
+              <p id="modalText" class="mt-4 text-sm text-gray-300"></p>
+              <a
+                id="modalLink"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="mt-4 hidden inline-block text-xs tracking-widest text-white/70 underline underline-offset-4 transition hover:text-white"
+              >
+                こちらをクリック
+              </a>
+            </div>
+          </div>
+
+        <script>
+
+            
+const modal = document.getElementById("modal");
+const modalImg = document.getElementById("modalImg");
+const modalVideo = document.getElementById("modalVideo");
+const modalText = document.getElementById("modalText");
+const modalLink = document.getElementById("modalLink");
+const closeModal = document.getElementById("closeModal");
+const modalContent = document.getElementById("modalContent");
+const workImages = document.querySelectorAll(".work-item img");
+const workVideos = document.querySelectorAll(".work-video");
+const protectedMedia = document.querySelectorAll(".work-item img, .work-item video, #modalImg, #modalVideo");
+
+function resetModalImageState() {
+  modalImg.classList.remove("is-flippable", "is-flipping-to-back", "is-flipping-to-front");
+  modalImg.style.transform = "";
+  delete modalImg.dataset.frontSrc;
+  delete modalImg.dataset.backSrc;
+  delete modalImg.dataset.side;
+}
+
+function openImageModal(img, parent) {
+  resetModalImageState();
+
+  modalImg.src = img.src;
+  modalImg.classList.remove("hidden");
+
+  if (img.dataset.frontSrc && img.dataset.backSrc) {
+    modalImg.dataset.frontSrc = img.dataset.frontSrc;
+    modalImg.dataset.backSrc = img.dataset.backSrc;
+    modalImg.dataset.side = "front";
+    modalImg.classList.add("is-flippable");
+  }
+
+  modalVideo.classList.add("hidden");
+  modalVideo.pause();
+
+  modalText.textContent = parent.dataset.caption || "";
+  updateModalLink(parent);
+
+  modal.classList.remove("hidden");
+  modal.classList.add("flex");
+}
+
+function flipModalImage() {
+  const frontSrc = modalImg.dataset.frontSrc;
+  const backSrc = modalImg.dataset.backSrc;
+
+  if (
+    !frontSrc ||
+    !backSrc ||
+    modalImg.classList.contains("is-flipping-to-back") ||
+    modalImg.classList.contains("is-flipping-to-front")
+  ) {
+    return;
+  }
+
+  const nextSide = modalImg.dataset.side === "back" ? "front" : "back";
+  const nextSrc = nextSide === "back" ? backSrc : frontSrc;
+
+  modalImg.classList.remove("is-flipping-to-back", "is-flipping-to-front");
+  modalImg.classList.add(nextSide === "back" ? "is-flipping-to-back" : "is-flipping-to-front");
+
+  window.setTimeout(() => {
+    modalImg.src = nextSrc;
+    modalImg.dataset.side = nextSide;
+  }, 350);
+}
+
+function loadDeferredMedia(category) {
+  document
+    .querySelectorAll(`[data-category="${category}"] img[data-src], [data-category="${category}"] video[data-src]`)
+    .forEach(media => {
+      if (media.dataset.loaded === "true") return;
+
+      media.src = media.dataset.src;
+      media.dataset.loaded = "true";
+
+      if (media.tagName === "VIDEO") {
+        media.load();
+      }
+    });
+}
+
+function updateModalLink(parent) {
+  const link = parent?.dataset.link;
+
+  if (link) {
+    modalLink.href = link;
+    modalLink.classList.remove("hidden");
+    return;
+  }
+
+  modalLink.href = "#";
+  modalLink.classList.add("hidden");
+}
+
+protectedMedia.forEach(media => {
+  media.setAttribute("draggable", "false");
+
+  media.addEventListener("contextmenu", (e) => {
+    e.preventDefault();
+  });
+
+  media.addEventListener("dragstart", (e) => {
+    e.preventDefault();
+  });
+});
+
+document.addEventListener("contextmenu", (e) => {
+  if (e.target.closest(".work-item, #modalContent")) {
+    e.preventDefault();
+  }
+});
+
+document.addEventListener("keydown", (e) => {
+  const key = e.key.toLowerCase();
+  const blockedSave = (e.ctrlKey || e.metaKey) && key === "s";
+  const blockedDevtools = e.key === "F12" || ((e.ctrlKey || e.metaKey) && e.shiftKey && ["i", "j", "c", "s"].includes(key));
+
+  if (blockedSave || blockedDevtools) {
+    e.preventDefault();
+  }
+});
+
+
+workImages.forEach((img, index) => {
+  img.decoding = "async";
+  if (index > 2) {
+    img.loading = "lazy";
+  }
+
+  img.addEventListener("click", () => {
+    const parent = img.closest(".work-item");
+    openImageModal(img, parent);
+  });
+});
+
+modalImg.addEventListener("click", () => {
+  if (!modalImg.classList.contains("is-flippable")) return;
+  flipModalImage();
+});
+
+modalImg.addEventListener("animationend", () => {
+  if (!modalImg.classList.contains("is-flippable")) return;
+
+  modalImg.classList.remove("is-flipping-to-back", "is-flipping-to-front");
+  modalImg.style.transform = "rotateY(0deg)";
+});
+
+
+workVideos.forEach(video => {
+  video.addEventListener("click", () => {
+
+    const parent = video.closest(".work-item");
+    resetModalImageState();
+
+    modalVideo.src = video.src;
+    modalVideo.classList.remove("hidden");
+
+    modalImg.classList.add("hidden");
+
+    modalText.textContent = parent.dataset.caption || "";
+    updateModalLink(parent);
+
+    modal.classList.remove("hidden");
+    modal.classList.add("flex");
+
+    modalVideo.play();
+  });
+});
+
+function syncVisibleVideos() {
+  workVideos.forEach(video => {
+    const isHidden = video.closest(".work-item")?.style.display === "none";
+
+    if (isHidden) {
+      video.pause();
+      return;
+    }
+
+    const playPromise = video.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(() => {});
+    }
+  });
+}
+
+
+function closeModalFunc() {
+  modal.classList.add("hidden");
+  modalVideo.pause();
+  modalLink.classList.add("hidden");
+  resetModalImageState();
+}
+
+closeModal.addEventListener("click", closeModalFunc);
+
+modal.addEventListener("click", (e) => {
+  if (!modalContent.contains(e.target) && e.target !== closeModal) {
+    closeModalFunc();
+  }
+});
+
+
+const buttons = document.querySelectorAll(".filter-btn");
+const items = document.querySelectorAll(".work-item, [data-category]");
+
+buttons.forEach(button => {
+  button.addEventListener("click", (e) => {
+
+    const filter = button.dataset.filter;
+    if (!filter) return;
+
+    e.preventDefault();
+    // 選択中のカテゴリを記憶（リロードしても photo に戻らないように）
+    try { localStorage.setItem('worksFilter', filter); } catch (err) {}
+    try { history.replaceState(null, '', '?filter=' + filter); } catch (err) {}
+    loadDeferredMedia(filter);
+
+    buttons.forEach(btn => btn.classList.remove("active"));
+    button.classList.add("active");
+
+    items.forEach(item => {
+      if (filter === "all" || item.dataset.category === filter) {
+        item.style.display = "";
+      } else {
+        item.style.display = "none";
+      }
+    });
+
+    syncVisibleVideos();
+
+  });
+});
+
+// URL の ?filter=（例：works.html?filter=video）があればそのフィルターで初期表示
+// 最後に表示したカテゴリを記憶し、リロードしても photo に戻らないようにする
+let savedFilter = null;
+try { savedFilter = localStorage.getItem('worksFilter'); } catch (err) {}
+const initialFilter = new URLSearchParams(location.search).get('filter')
+                   || savedFilter
+                   || 'photo';
+const initialBtn = document.querySelector(`[data-filter="${initialFilter}"]`)
+                || document.querySelector('[data-filter="photo"]');
+initialBtn.click();
+        </script>
+
+        <script>
+          // ハンバーガーメニュー（右からスライド）
+          const menuToggle = document.getElementById('menuToggle');
+          const menuOverlay = document.getElementById('menuOverlay');
+          const menuBackdrop = document.getElementById('menuBackdrop');
+          function setMenu(open) {
+            document.body.classList.toggle('menu-open', open);
+            menuOverlay.classList.toggle('translate-x-full', !open);
+            menuBackdrop.classList.toggle('opacity-0', !open);
+            menuBackdrop.classList.toggle('pointer-events-none', !open);
+          }
+          function closeMenu() { setMenu(false); }
+          menuToggle.addEventListener('click', () => setMenu(!document.body.classList.contains('menu-open')));
+          menuBackdrop.addEventListener('click', closeMenu);
+
+          // WORKS ツリーの開閉
+          const worksToggle = document.getElementById('worksToggle');
+          const submenu = document.querySelector('#menuOverlay .submenu');
+          const caret = document.querySelector('#menuOverlay .tree-caret');
+          worksToggle.addEventListener('click', () => {
+            submenu.classList.toggle('open');
+            caret.classList.toggle('open');
+          });
+
+          // サブ項目：works ページ内なのでその場でフィルター
+          document.querySelectorAll('#menuOverlay [data-filter-link]').forEach((a) => {
+            a.addEventListener('click', (e) => {
+              const btn = document.querySelector(`.filter-btn[data-filter="${a.dataset.filterLink}"]`);
+              if (btn) {
+                e.preventDefault();
+                btn.click();
+                closeMenu();
+              }
+            });
+          });
+        </script>
+
+
+        
+</body>
+
+</html>
