@@ -1,0 +1,278 @@
+body {
+    /* 英語は Roboto、日本語は游ゴシック（自動でフォールバック） */
+    font-family: "Roboto", "游ゴシック体", "YuGothic", "Yu Gothic",
+      "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+    background-color: #000;
+    color: #ededed;
+  }
+
+html, body {
+    height: 100%;
+    margin: 0;
+  }
+
+/* ===== ハンバーガーメニュー ===== */
+.hamburger {
+  display: inline-block;
+  position: relative;
+  width: 24px;
+  height: 16px;
+}
+.hamburger span {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  transition: top 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+}
+.hamburger span:nth-child(1) { top: 0; }
+.hamburger span:nth-child(2) { top: 7px; }
+.hamburger span:nth-child(3) { top: 14px; }
+
+body.menu-open .hamburger span:nth-child(1) { top: 7px; transform: rotate(45deg); }
+body.menu-open .hamburger span:nth-child(2) { opacity: 0; }
+body.menu-open .hamburger span:nth-child(3) { top: 7px; transform: rotate(-45deg); }
+
+/* PC ではマークを少し大きく */
+@media (min-width: 640px) {
+  .hamburger { width: 34px; height: 22px; }
+  .hamburger span { height: 2.5px; }
+  .hamburger span:nth-child(2) { top: 10px; }
+  .hamburger span:nth-child(3) { top: 20px; }
+  body.menu-open .hamburger span:nth-child(1) { top: 10px; transform: rotate(45deg); }
+  body.menu-open .hamburger span:nth-child(3) { top: 10px; transform: rotate(-45deg); }
+}
+
+/* メニュー内 WORKS のツリー（クリックで開閉） */
+.submenu {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  margin-top: 0;
+  transition: max-height 0.35s ease, opacity 0.3s ease, margin-top 0.3s ease;
+}
+.submenu.open {
+  max-height: 320px;
+  opacity: 1;
+  margin-top: 1rem;
+}
+.tree-caret {
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+.tree-caret.open {
+  transform: rotate(90deg);
+}
+
+/* メインビデオ：screen 合成 ＋ 外周を大きくぼかす */
+.screen-video {
+  mix-blend-mode: screen;
+  -webkit-mask-image:
+    linear-gradient(to right, transparent 0, #000 22%, #000 78%, transparent 100%),
+    linear-gradient(to bottom, transparent 0, #000 22%, #000 78%, transparent 100%);
+  -webkit-mask-composite: source-in;
+          mask-image:
+    linear-gradient(to right, transparent 0, #000 22%, #000 78%, transparent 100%),
+    linear-gradient(to bottom, transparent 0, #000 22%, #000 78%, transparent 100%);
+          mask-composite: intersect;
+}
+
+/* ===== TOP ページ：ホバー / スクロールで白背景が出る reveal ナビ ===== */
+.reveal-link {
+  position: relative;
+  display: inline-block;
+  padding: 0 0.35em;
+  line-height: 1;
+  isolation: isolate;
+}
+
+.reveal-link .reveal-bg {
+  position: absolute;
+  left: 0;
+  right: 0;
+  /* 上端は大文字の上、下端はベースラインより少し上にして、文字の下も若干切れるように */
+  top: 0.17em;
+  height: 0.63em;
+  background: #fff;
+  transform: scaleX(0);
+  /* 画面右端から伸びてくるよう、右を起点に */
+  transform-origin: right center;
+  transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  z-index: -1;
+}
+
+.reveal-link .reveal-text {
+  position: relative;
+  color: #000;
+  transition: color 0.3s ease;
+}
+
+/* PC：カーソルが触れたら右から白い長方形が出る */
+@media (hover: hover) {
+  .reveal-link:hover .reveal-bg {
+    transform: scaleX(1);
+  }
+}
+
+/* スマホ等：画面内に入ったら右からニュッと白背景が出る */
+.reveal-link.in-view .reveal-bg {
+  transform: scaleX(1);
+}
+
+/* スマホ（縦長）：白背景は使わず、最初から白字で表示 */
+@media (max-width: 767px) {
+  .reveal-link .reveal-bg {
+    display: none;
+  }
+  .reveal-link .reveal-text {
+    color: #fff;
+  }
+}
+
+.work-item {
+  content-visibility: auto;
+  contain-intrinsic-size: 320px;
+}
+
+.work-item img,
+.work-item video,
+#modalImg,
+#modalVideo {
+  -webkit-user-drag: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  pointer-events: auto;
+}
+
+#modalImg.is-flippable {
+  cursor: pointer;
+}
+
+#modalImg.is-flipping-to-back {
+  animation: business-card-flip-to-back 0.7s ease-in-out forwards;
+}
+
+#modalImg.is-flipping-to-front {
+  animation: business-card-flip-to-front 0.7s ease-in-out forwards;
+}
+
+@keyframes business-card-flip-to-back {
+  0% {
+    transform: rotateY(0deg) scale(1);
+  }
+  50% {
+    transform: rotateY(90deg) scale(0.98);
+  }
+  100% {
+    transform: rotateY(0deg) scale(1);
+  }
+}
+
+@keyframes business-card-flip-to-front {
+  0% {
+    transform: rotateY(0deg) scale(1);
+  }
+  50% {
+    transform: rotateY(90deg) scale(0.98);
+  }
+  100% {
+    transform: rotateY(0deg) scale(1);
+  }
+}
+
+.framed-thumb {
+  border: 0.5px solid rgba(255, 255, 255, 0.7);
+}
+  
+  .filter-btn {
+    position: relative;
+    opacity: 0.5;
+    transition: 0.3s;
+  }
+  
+  .filter-btn::after {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: -4px;
+    width: 0;
+    height: 1px;
+    background: white;
+    transition: width 0.3s ease;
+  }
+  
+
+  .filter-btn:hover::after {
+    width: 100%;
+  }
+  
+
+  .filter-btn.active::after {
+    width: 100%;
+  }
+  
+  .filter-btn:hover,
+  .filter-btn.active {
+    opacity: 1;
+  }
+  .bg-video1 {
+    position: fixed;
+    width: 25vw;
+    max-width: 300px;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  
+  }
+  .bg-video2 {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 25vw;
+    max-width: 300px;
+    height: auto;
+    object-fit: cover;
+    z-index: 10;
+  }
+  @media (max-width: 640px) {
+    .bg-video2 {
+      width: 40vw;
+      height: auto;
+  
+      top: 10px;     
+      bottom: auto;  
+  
+      right: 10px;
+      left: auto;
+  
+      object-fit: contain;
+     
+    }
+  
+  }
+  .bg-video3 {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    width: 20vw;
+    max-width: 260px;
+    height: auto;
+    object-fit: cover;
+    z-index: 10;
+  }
+  .bg-video2 {
+  filter: blur(2px);
+}
+
+a video {
+    cursor: pointer;
+  }
+
+  .bg-video4
+   { position: fixed; top: 0; right: 0; width: 25vw; max-width: 300px; height: auto; object-fit: cover; z-index: 10; } 
+   @media (max-width: 640px) 
+   { .bg-video4 {position: fixed; width: 40vw;  height: auto; top: auto; left: auto; right: 10px; bottom: 10px; object-fit: contain;  } }
+
+   @media (max-width: 400px) 
+   { .bg-video4 {position: fixed; width: 20vw;  height: auto; top: auto; left: auto; right: 10px; bottom: 10px; object-fit: contain;  } }
