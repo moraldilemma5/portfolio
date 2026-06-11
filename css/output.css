@@ -899,9 +899,7 @@ header {
   overflow: hidden;
   cursor: pointer;
   margin: 0;
-  transform: rotate(calc(-3deg + 6deg * var(--i)));
   position: absolute;
-  transition: all 0.8s ease;
 }
 .gallery .item img {
   width: 100%;
